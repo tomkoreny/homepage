@@ -52,14 +52,12 @@ export default function Home() {
 
           <div className="relative">
             <h1 className="leading-[0.85] relative">
-              <span className="graffiti-wrap text-7xl md:text-9xl inline-block rotate-2">
-                <span className="graffiti-outline" aria-hidden="true">Tom</span>
-                <span className="graffiti-fill graffiti-fill-blue">Tom</span>
+              <span className="graffiti-blue text-7xl md:text-9xl inline-block rotate-2">
+                Tom
               </span>
               <br />
-              <span className="graffiti-wrap text-6xl md:text-8xl inline-block -rotate-3 mt-1 relative">
-                <span className="graffiti-outline" aria-hidden="true">Korený</span>
-                <span className="graffiti-fill graffiti-fill-orange">Korený</span>
+              <span className="graffiti-orange text-6xl md:text-8xl inline-block -rotate-3 mt-1 relative">
+                Korený
                 <span className="absolute -right-7 -top-5 font-mono text-[0.6rem] font-bold bg-fg text-white px-1.5 py-0.5 rotate-12 border-2 border-fg" style={{ fontFamily: "'Space Mono', monospace" }}>
                   .com
                 </span>

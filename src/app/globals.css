@@ -154,33 +154,25 @@ body::before {
   animation: marquee 20s linear infinite;
 }
 
-/* graffiti name — stacked layers for outline + gradient */
-.graffiti-wrap {
-  position: relative;
-  display: inline-block;
+/* graffiti name */
+.graffiti-blue {
   font-family: 'Lilita One', 'Rubik Spray Paint', cursive;
-}
-
-.graffiti-wrap .graffiti-outline {
-  -webkit-text-stroke: 5px var(--border);
-  color: var(--border);
-  filter: drop-shadow(5px 5px 0 var(--border));
-}
-
-.graffiti-wrap .graffiti-fill {
-  position: absolute;
-  inset: 0;
+  background: linear-gradient(180deg, #7aabff 0%, #3355ff 50%, #2b3fff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  text-shadow: none;
+  filter: drop-shadow(3px 3px 0 #1a1a2e) drop-shadow(-1px -1px 0 #1a1a2e);
 }
 
-.graffiti-fill-blue {
-  background: linear-gradient(180deg, #7aabff 0%, #3355ff 50%, #2b3fff 100%);
-}
-
-.graffiti-fill-orange {
+.graffiti-orange {
+  font-family: 'Lilita One', 'Rubik Spray Paint', cursive;
   background: linear-gradient(180deg, #ffbb55 0%, #ff6b2b 50%, #e85a1a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  filter: drop-shadow(3px 3px 0 #1a1a2e) drop-shadow(-1px -1px 0 #1a1a2e);
 }
 
 /* selection */
