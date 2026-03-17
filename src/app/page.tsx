@@ -51,20 +51,19 @@ export default function Home() {
           </div>
 
           <div className="relative">
-            <h1 className="text-5xl md:text-6xl font-black tracking-tight leading-none relative">
+            <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-[0.9] relative">
               <span className="relative inline-block">
-                <span className="relative z-10">Tom</span>
-                <span className="absolute -bottom-1 left-0 right-0 h-3 bg-orange/30 -z-0" />
+                <span className="relative z-10 bg-blue text-white px-3 py-1 inline-block rotate-1">Tom</span>
               </span>
               <br />
-              <span className="text-blue relative inline-block -rotate-2 mt-1">
-                Korený
-                <span className="absolute -right-6 -top-4 font-mono text-[0.6rem] font-bold bg-orange text-white px-1.5 py-0.5 rotate-12 border-2 border-border">
+              <span className="relative inline-block -rotate-2 mt-2">
+                <span className="bg-orange text-white px-3 py-1 inline-block">Korený</span>
+                <span className="absolute -right-7 -top-5 font-mono text-[0.6rem] font-bold bg-fg text-white px-1.5 py-0.5 rotate-12 border-2 border-fg">
                   .com
                 </span>
               </span>
             </h1>
-            <p className="font-mono text-xs mt-3 text-fg/60 tracking-[0.2em] uppercase">
+            <p className="font-mono text-xs mt-4 text-fg/60 tracking-[0.2em] uppercase">
               DevOps · Self-Hoster · Rally Driver
             </p>
           </div>
