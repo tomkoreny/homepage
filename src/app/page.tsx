@@ -31,7 +31,7 @@ export default function Home() {
       <div className="fixed top-20 -right-16 w-64 h-64 bg-blue/10 border-3 border-blue/20 rotate-12 -z-10" />
       <div className="fixed bottom-20 -left-12 w-48 h-48 bg-orange/10 border-3 border-orange/20 -rotate-6 -z-10" />
       <div className="fixed top-1/2 left-1/4 w-4 h-4 bg-orange rotate-45 -z-10" />
-      <div className="fixed top-1/3 right-1/3 w-3 h-3 bg-blue rotate-12 -z-10" />
+
 
       <motion.div
         className="w-full max-w-md space-y-8"
@@ -51,14 +51,14 @@ export default function Home() {
           </div>
 
           <div className="relative">
-            <h1 className="leading-[0.85] relative">
-              <span className="graffiti-blue text-7xl md:text-9xl inline-block rotate-2">
-                Tom
+            <h1 className="leading-[0.85] relative uppercase">
+              <span className="graffiti-orange text-7xl md:text-9xl inline-block rotate-2">
+                <span className="text-[1.15em]">T</span>om
               </span>
               <br />
-              <span className="graffiti-orange text-6xl md:text-8xl inline-block -rotate-3 mt-1 relative">
-                Korený
-                <span className="absolute -right-7 -top-5 font-mono text-[0.6rem] font-bold bg-fg text-white px-1.5 py-0.5 rotate-12 border-2 border-fg" style={{ fontFamily: "'Space Mono', monospace" }}>
+              <span className="graffiti-blue text-6xl md:text-8xl inline-block -rotate-3 mt-1 relative">
+                <span className="text-[1.15em]">K</span>orený
+                <span className="absolute -right-3 -top-6 font-mono text-[0.55rem] font-bold bg-orange text-white px-1.5 py-0.5 rotate-12 border-2 border-white" style={{ fontFamily: "'Space Mono', monospace", WebkitTextStroke: '0', textShadow: 'none', filter: 'none' }}>
                   .com
                 </span>
               </span>

@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
+import { Bowlby_One_SC } from "next/font/google";
 import "./globals.css";
+
+const heading = Bowlby_One_SC({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-heading",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Tom Korený",
@@ -21,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={heading.variable}>
       <body className="antialiased">
         {children}
       </body>
