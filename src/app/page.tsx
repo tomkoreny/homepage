@@ -51,14 +51,14 @@ export default function Home() {
           </div>
 
           <div className="relative">
-            <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-[0.9] relative">
-              <span className="relative inline-block">
-                <span className="relative z-10 bg-blue text-white px-3 py-1 inline-block rotate-1">Tom</span>
+            <h1 className="leading-[0.95] relative" style={{ fontFamily: "'Bungee Spice', cursive" }}>
+              <span className="text-6xl md:text-8xl inline-block rotate-1">
+                Tom
               </span>
               <br />
-              <span className="relative inline-block -rotate-2 mt-2">
-                <span className="bg-orange text-white px-3 py-1 inline-block">Korený</span>
-                <span className="absolute -right-7 -top-5 font-mono text-[0.6rem] font-bold bg-fg text-white px-1.5 py-0.5 rotate-12 border-2 border-fg">
+              <span className="text-5xl md:text-7xl inline-block -rotate-2 mt-1 relative">
+                Korený
+                <span className="absolute -right-7 -top-5 font-mono text-[0.6rem] font-bold bg-fg text-white px-1.5 py-0.5 rotate-12 border-2 border-fg" style={{ fontFamily: "'Space Mono', monospace" }}>
                   .com
                 </span>
               </span>
