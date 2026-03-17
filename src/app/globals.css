@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Outfit:wght@400;600;800;900&family=Rubik+Spray+Paint&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Outfit:wght@400;600;800;900&family=Rubik+Spray+Paint&family=Lilita+One&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -152,6 +152,40 @@ body::before {
 
 .marquee-track {
   animation: marquee 20s linear infinite;
+}
+
+/* graffiti name heading */
+.graffiti-text {
+  font-family: 'Lilita One', 'Rubik Spray Paint', cursive;
+  background: linear-gradient(180deg, #5c8fff 0%, #2b3fff 40%, #ff6b2b 60%, #ff9447 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  paint-order: stroke fill;
+  -webkit-text-stroke: 3px var(--border);
+  filter: drop-shadow(4px 4px 0 var(--border));
+  line-height: 0.85;
+  letter-spacing: -0.02em;
+}
+
+.graffiti-text-blue {
+  font-family: 'Lilita One', 'Rubik Spray Paint', cursive;
+  background: linear-gradient(180deg, #5c8fff 0%, #2b3fff 50%, #1a2ee8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-text-stroke: 3px var(--border);
+  filter: drop-shadow(4px 4px 0 var(--border));
+}
+
+.graffiti-text-orange {
+  font-family: 'Lilita One', 'Rubik Spray Paint', cursive;
+  background: linear-gradient(180deg, #ffaa47 0%, #ff6b2b 50%, #e85a1a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-text-stroke: 3px var(--border);
+  filter: drop-shadow(4px 4px 0 var(--border));
 }
 
 /* selection */

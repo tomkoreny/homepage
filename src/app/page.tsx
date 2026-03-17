@@ -51,12 +51,12 @@ export default function Home() {
           </div>
 
           <div className="relative">
-            <h1 className="leading-[0.85] relative" style={{ fontFamily: "'Rubik Spray Paint', cursive" }}>
-              <span className="text-7xl md:text-9xl inline-block rotate-1 text-blue">
+            <h1 className="leading-[0.85] relative">
+              <span className="graffiti-text-blue text-7xl md:text-9xl inline-block rotate-2">
                 Tom
               </span>
               <br />
-              <span className="text-6xl md:text-8xl inline-block -rotate-3 mt-1 relative text-orange">
+              <span className="graffiti-text-orange text-6xl md:text-8xl inline-block -rotate-3 mt-1 relative">
                 Korený
                 <span className="absolute -right-7 -top-5 font-mono text-[0.6rem] font-bold bg-fg text-white px-1.5 py-0.5 rotate-12 border-2 border-fg" style={{ fontFamily: "'Space Mono', monospace" }}>
                   .com
