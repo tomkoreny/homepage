@@ -2,13 +2,29 @@
 
 import { motion } from 'framer-motion';
 
-const links = [
-  { label: 'GitHub', href: 'https://github.com/tomkoreny', icon: '⌘', accent: false },
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/tomkoreny', icon: '◆', accent: false },
-  { label: 'Gitea', href: 'https://git.tomkoreny.com', icon: '◈', accent: true },
-  { label: 'Mastodon', href: 'https://mstdn.tomkoreny.com/@tom', icon: '◎', accent: false },
-  { label: 'Matrix', href: 'https://matrix.to/#/@tom:tomkoreny.com', icon: '▣', accent: true },
-  { label: 'Email', href: 'mailto:tom@tomkoreny.com', icon: '▶', accent: false },
+const sections = [
+  {
+    title: '// socials',
+    links: [
+      { label: 'GitHub', href: 'https://github.com/tomkoreny', icon: '⌘', accent: false },
+      { label: 'LinkedIn', href: 'https://linkedin.com/in/tomkoreny', icon: '◆', accent: false },
+      { label: 'Mastodon', href: 'https://mstdn.tomkoreny.com/@tom', icon: '◎', accent: false },
+      { label: 'Matrix', href: 'https://matrix.to/#/@tom:tomkoreny.com', icon: '▣', accent: false },
+    ],
+  },
+  {
+    title: '// projects',
+    links: [
+      { label: 'Gitea', href: 'https://git.tomkoreny.com', icon: '◈', accent: true },
+      { label: 'OpenClaw', href: 'https://openclaw.ai', icon: '🦞', accent: true },
+    ],
+  },
+  {
+    title: '// contact',
+    links: [
+      { label: 'Email', href: 'mailto:tom@tomkoreny.com', icon: '▶', accent: false },
+    ],
+  },
 ];
 
 const techStack = [
@@ -34,7 +50,7 @@ export default function Home() {
 
 
       <motion.div
-        className="w-full max-w-md space-y-8"
+        className="w-full max-w-lg space-y-8"
         initial="hidden"
         animate="show"
         variants={stagger.container}
@@ -64,43 +80,46 @@ export default function Home() {
               </span>
             </h1>
             <p className="font-mono text-xs mt-4 text-fg/60 tracking-[0.2em] uppercase">
-              DevOps · Self-Hoster · Rally Driver
+              Software Dev · DevOps · Self-Hoster · Rally Driver
             </p>
           </div>
 
           {/* bio */}
           <div className="neo-card p-4 text-left relative corner-mark">
             <p className="text-[0.95rem] leading-relaxed">
-              Infrastructure nerd based in Czech Republic. I build homelabs, automate everything,
-              and race electric cars on weekends. Passionate about{' '}
+              Software developer &amp; infrastructure nerd based in Prague, 🇨🇿. I
+              write code, automate everything, and race electric cars on weekends. Passionate about{' '}
+              <span className="bg-orange text-white px-1 font-bold">open source</span>,{' '}
               <span className="bg-blue text-white px-1 font-bold">self-hosting</span>,{' '}
-              <span className="bg-orange text-white px-1 font-bold">open source</span>, and
+              and <span className="bg-red-600 text-white px-1 font-bold">AI</span> 🦞 —
               keeping things running at 3 AM so you don&apos;t have to.
             </p>
           </div>
         </motion.header>
 
-        {/* links */}
-        <motion.section variants={stagger.item} className="space-y-3">
-          <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-fg/50 ml-1">
-            // find me
-          </h2>
-          {links.map((link, i) => (
-            <motion.a
-              key={link.label}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`neo-link ${link.accent ? 'neo-link-accent' : ''}`}
-              variants={stagger.item}
-              custom={i}
-            >
-              <span className="text-xl w-8 text-center font-mono">{link.icon}</span>
-              <span>{link.label}</span>
-              <span className="ml-auto font-mono text-xs text-fg/40">→</span>
-            </motion.a>
-          ))}
-        </motion.section>
+        {/* link sections */}
+        {sections.map((section) => (
+          <motion.section key={section.title} variants={stagger.item} className="space-y-3">
+            <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-fg/50 ml-1">
+              {section.title}
+            </h2>
+            {section.links.map((link, i) => (
+              <motion.a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`neo-link ${link.accent ? 'neo-link-accent' : ''}`}
+                variants={stagger.item}
+                custom={i}
+              >
+                <span className="text-xl w-8 text-center font-mono">{link.icon}</span>
+                <span>{link.label}</span>
+                <span className="ml-auto font-mono text-xs text-fg/40">→</span>
+              </motion.a>
+            ))}
+          </motion.section>
+        ))}
 
         {/* tech stack marquee */}
         <motion.section variants={stagger.item} className="space-y-3">
