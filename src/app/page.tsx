@@ -31,7 +31,7 @@ const sections = [
       { label: 'Facebook', href: 'https://facebook.com/puma2254', icon: 'facebook', accent: false },
       { label: 'X / Twitter', href: 'https://x.com/tomkoreny', icon: 'x', accent: false },
       { label: 'LinkedIn', href: 'https://linkedin.com/in/tomkoreny', icon: 'linkedin', accent: false },
-      { label: 'Mastodon', href: 'https://mstdn.tomkoreny.com/@tom', icon: 'mastodon', accent: false },
+      { label: 'Mastodon', href: 'https://mstdn.tomkoreny.com/@tom', icon: 'mastodon', accent: false, rel: 'me' },
       { label: 'Discord', href: 'https://discordapp.com/users/213647399812464640', icon: 'discord', accent: false },
       // { label: 'Reddit', href: 'https://reddit.com/u/Pumicek', icon: 'reddit', accent: false },
       // { label: 'Twitch', href: 'https://twitch.tv/pumpicek', icon: 'twitch', accent: false },
@@ -166,7 +166,7 @@ export default function Home() {
                 key={link.label}
                 href={link.href}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel={`noopener noreferrer${'rel' in link && link.rel ? ` ${link.rel}` : ''}`}
                 className={`neo-link ${link.accent ? 'neo-link-accent' : ''}`}
                 variants={stagger.item}
                 custom={i}
