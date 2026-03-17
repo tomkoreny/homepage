@@ -50,11 +50,21 @@ export default function Home() {
             <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-orange border-3 border-border rounded-full" />
           </div>
 
-          <div>
-            <h1 className="text-4xl md:text-5xl font-black tracking-tight leading-none">
-              Tom <span className="text-blue">Korený</span>
+          <div className="relative">
+            <h1 className="text-5xl md:text-6xl font-black tracking-tight leading-none relative">
+              <span className="relative inline-block">
+                <span className="relative z-10">Tom</span>
+                <span className="absolute -bottom-1 left-0 right-0 h-3 bg-orange/30 -z-0" />
+              </span>
+              <br />
+              <span className="text-blue relative inline-block -rotate-2 mt-1">
+                Korený
+                <span className="absolute -right-6 -top-4 font-mono text-[0.6rem] font-bold bg-orange text-white px-1.5 py-0.5 rotate-12 border-2 border-border">
+                  .com
+                </span>
+              </span>
             </h1>
-            <p className="font-mono text-sm mt-2 text-fg/70">
+            <p className="font-mono text-xs mt-3 text-fg/60 tracking-[0.2em] uppercase">
               DevOps · Self-Hoster · Rally Driver
             </p>
           </div>
