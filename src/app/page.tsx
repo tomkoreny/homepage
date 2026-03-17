@@ -26,21 +26,21 @@ const sections = [
   {
     title: '// socials',
     links: [
-      { label: 'GitHub', href: 'https://github.com/tomkoreny', icon: 'github', accent: false },
-      { label: 'LinkedIn', href: 'https://linkedin.com/in/tomkoreny', icon: 'linkedin', accent: false },
       { label: 'Instagram', href: 'https://instagram.com/tomkoreny', icon: 'instagram', accent: false },
       { label: 'Facebook', href: 'https://facebook.com/puma2254', icon: 'facebook', accent: false },
       { label: 'X / Twitter', href: 'https://x.com/tomkoreny', icon: 'x', accent: false },
+      { label: 'LinkedIn', href: 'https://linkedin.com/in/tomkoreny', icon: 'linkedin', accent: false },
       { label: 'Mastodon', href: 'https://mstdn.tomkoreny.com/@tom', icon: 'mastodon', accent: false },
-      { label: 'Reddit', href: 'https://reddit.com/u/Pumicek', icon: 'reddit', accent: false },
       { label: 'Discord', href: 'https://discordapp.com/users/213647399812464640', icon: 'discord', accent: false },
-      { label: 'Twitch', href: 'https://twitch.tv/pumpicek', icon: 'twitch', accent: false },
+      // { label: 'Reddit', href: 'https://reddit.com/u/Pumicek', icon: 'reddit', accent: false },
+      // { label: 'Twitch', href: 'https://twitch.tv/pumpicek', icon: 'twitch', accent: false },
       { label: 'Steam', href: 'https://steamcommunity.com/id/puma2254', icon: 'steam', accent: false },
     ],
   },
   {
     title: '// projects',
     links: [
+      { label: 'GitHub', href: 'https://github.com/tomkoreny', icon: 'github', accent: true },
       { label: 'Git', href: 'https://git.tomkoreny.com', icon: 'forgejo', accent: true },
     ],
   },
@@ -54,8 +54,10 @@ const sections = [
 ];
 
 const techStack = [
-  'NixOS', 'Docker', 'Kubernetes', 'TypeScript', 'Node.js',
-  'Terraform', 'Proxmox', 'Grafana', 'PostgreSQL', 'Tailscale',
+  'TypeScript', 'Python', 'Go', 'Ruby', 'Nix', 'React', 'Next.js', 'Vue', 'Angular',
+  'Node.js', 'NestJS', 'Fastify', 'FastAPI', 'LVGL', 'Docker', 'Kubernetes', 'Proxmox',
+  'NixOS', 'Terraform', 'PostgreSQL', 'Grafana', 'Prometheus', 'Loki',
+  'Tailscale', 'Traefik', 'Git', 'CI/CD', 'ArgoCD', 'Linux',
 ];
 
 const stagger = {
@@ -135,7 +137,7 @@ export default function Home() {
               </span>
             </h1>
             <p className="font-mono text-xs mt-4 text-fg/60 tracking-[0.2em] uppercase">
-              Software Dev · DevOps · Self-Hoster · Rally Driver
+              Software Dev · DevOps · Rally Driver
             </p>
           </div>
 
