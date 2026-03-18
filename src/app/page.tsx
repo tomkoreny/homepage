@@ -21,6 +21,9 @@ const icons: Record<string, ReactNode> = {
   email: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>,
   sun: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>,
   moon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>,
+  lemmy: <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M4.549 11.681c1.264-.256 2.453-.727 2.29-2.086-.191-1.588-2.14-1.4-3.413-1.143C2.148 8.709.738 9.425.51 10.736c-.184 1.064.462 2.069 1.469 2.313 1.13.274 1.777-.156 2.013-.619a.86.86 0 0 0 .077-.152l.01-.024c.127-.33.21-.453.47-.573zM19.45 11.681c-1.264-.256-2.453-.727-2.29-2.086.191-1.588 2.14-1.4 3.413-1.143 1.278.257 2.688.973 2.916 2.284.184 1.064-.462 2.069-1.469 2.313-1.13.274-1.777-.156-2.013-.619a.86.86 0 0 1-.077-.152l-.01-.024c-.127-.33-.21-.453-.47-.573zM12 2C8 2 5 5.587 5 9.5c0 2.7 1.5 5.5 3.5 7 1.167.875 2.167 3.5 3.5 3.5s2.333-2.625 3.5-3.5c2-1.5 3.5-4.3 3.5-7C19 5.587 16 2 12 2zm-2.5 8a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" /></svg>,
+  blog: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" /></svg>,
+  cv: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>,
 };
 
 const sections = [
@@ -41,6 +44,9 @@ const sections = [
   {
     title: '// projects',
     links: [
+      { label: 'CV', href: 'https://cv.tomkoreny.com/tom/tom-koreny-cv', icon: 'cv', accent: true },
+      { label: 'Blog', href: 'https://blog.tomkoreny.com', icon: 'blog', accent: true },
+      { label: 'Lemmy', href: 'https://lemmy.tomkoreny.com/u/tom', icon: 'lemmy', accent: true },
       { label: 'GitHub', href: 'https://github.com/tomkoreny', icon: 'github', accent: true },
       { label: 'Git', href: 'https://git.tomkoreny.com', icon: 'forgejo', accent: true },
     ],
