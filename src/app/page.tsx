@@ -28,6 +28,12 @@ const icons: Record<string, ReactNode> = {
 
 const sections = [
   {
+    title: '// cv',
+    links: [
+      { label: 'CV', href: 'https://cv.tomkoreny.com/tom/tom-koreny-cv', icon: 'cv', accent: true },
+    ],
+  },
+  {
     title: '// socials',
     links: [
       { label: 'Instagram', href: 'https://instagram.com/tomkoreny', icon: 'instagram', accent: false },
@@ -35,6 +41,7 @@ const sections = [
       { label: 'X / Twitter', href: 'https://x.com/tomkoreny', icon: 'x', accent: false },
       { label: 'LinkedIn', href: 'https://linkedin.com/in/tomkoreny', icon: 'linkedin', accent: false },
       { label: 'Mastodon', href: 'https://mstdn.tomkoreny.com/@tom', icon: 'mastodon', accent: false, rel: 'me' },
+      { label: 'Lemmy', href: 'https://lemmy.tomkoreny.com/u/tom', icon: 'lemmy', accent: false },
       { label: 'Discord', href: 'https://discordapp.com/users/213647399812464640', icon: 'discord', accent: false },
       // { label: 'Reddit', href: 'https://reddit.com/u/Pumicek', icon: 'reddit', accent: false },
       // { label: 'Twitch', href: 'https://twitch.tv/pumpicek', icon: 'twitch', accent: false },
@@ -44,9 +51,7 @@ const sections = [
   {
     title: '// projects',
     links: [
-      { label: 'CV', href: 'https://cv.tomkoreny.com/tom/tom-koreny-cv', icon: 'cv', accent: true },
       { label: 'Blog', href: 'https://blog.tomkoreny.com', icon: 'blog', accent: true },
-      { label: 'Lemmy', href: 'https://lemmy.tomkoreny.com/u/tom', icon: 'lemmy', accent: true },
       { label: 'GitHub', href: 'https://github.com/tomkoreny', icon: 'github', accent: true },
       { label: 'Git', href: 'https://git.tomkoreny.com', icon: 'forgejo', accent: true },
     ],
