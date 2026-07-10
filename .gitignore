@@ -23,6 +23,11 @@
 # misc
 .DS_Store
 *.pem
+/.idea/
+/.pi-subagents/
+/test-results/
+/playwright-report/
+/blob-report/
 
 # debug
 npm-debug.log*

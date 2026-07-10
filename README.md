@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# tomkoreny.com
 
-## Getting Started
+Personal homepage for Tom Korený, built with Next.js, React, TypeScript, and Tailwind CSS.
 
-First, run the development server:
+## Development
+
+Requires Node.js 20.9 or newer.
 
 ```bash
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open <http://localhost:3000>.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Quality checks
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint       # ESLint
+npm run typecheck  # TypeScript
+npm run build      # Production build
+npm test           # Playwright + axe accessibility smoke tests
+npm run check      # All checks above
+npm audit --omit=dev
+```
 
-## Learn More
+Install the Playwright browser once before running the end-to-end tests locally:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npx playwright install chromium
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+GitHub Actions runs the complete validation suite for pushes and pull requests.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Architecture
 
-## Deploy on Vercel
+- `src/app/page.tsx` — server-rendered homepage content
+- `src/app/theme-toggle.tsx` — the only interactive client component
+- `src/app/layout.tsx` — metadata, self-hosted heading font, theme initialization, and analytics
+- `src/app/privacy/page.tsx` — analytics and local-storage disclosure
+- `src/app/robots.ts` and `src/app/sitemap.ts` — crawler discovery
+- `src/app/opengraph-image.tsx` and `twitter-image.tsx` — generated social cards
+- `next.config.mjs` — canonical redirect and response security headers
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The site uses a self-hosted Rybbit Analytics instance. Session replay and
+interaction tracking are disabled; see `/privacy` for the visitor-facing
+disclosure.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Security headers
+
+`next.config.mjs` applies CSP, HSTS, clickjacking, MIME-sniffing, referrer, and
+permissions headers. The production CSP deliberately allows inline scripts
+because Next.js emits inline bootstrap data and the pre-hydration theme
+initializer must run before paint. A strict nonce-based CSP would require
+per-request rendering, so this policy is defense in depth rather than a
+complete XSS boundary. Keep user-controlled HTML and script injection out of
+the application.
+
+## Deployment
+
+The production deployment runs on Vercel from the `main` branch. Configure
+`www.tomkoreny.com` as the canonical production domain and redirect the apex
+domain permanently to it. The application is deployed with `next build` and
+`next start`; it is not a static export.
