@@ -43,7 +43,9 @@ const nextConfig = {
 	async redirects() {
 		return [
 			{
-				source: "/:path*",
+				// Matrix federation and client discovery must be served directly from
+				// the server-name host. Redirecting these endpoints breaks delegation.
+				source: "/:path((?!\\.well-known/matrix/).*)",
 				has: [{ type: "host", value: "tomkoreny.com" }],
 				destination: "https://www.tomkoreny.com/:path*",
 				permanent: true,

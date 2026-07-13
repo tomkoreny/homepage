@@ -189,3 +189,35 @@ test("publishes crawler discovery files and canonicalizes the host", async ({
 	expect(xml).toContain("https://www.tomkoreny.com/");
 	expect(xml).toContain("https://www.tomkoreny.com/privacy");
 });
+
+test("serves Matrix discovery directly from the apex host", async ({
+	request,
+}) => {
+	const server = await request.get("/.well-known/matrix/server", {
+		headers: { host: "tomkoreny.com" },
+		maxRedirects: 0,
+	});
+	expect(server.status()).toBe(200);
+	expect(server.headers()["access-control-allow-origin"]).toBe("*");
+	expect(await server.json()).toEqual({
+		"m.server": "matrix.tomkoreny.com:443",
+	});
+
+	const client = await request.get("/.well-known/matrix/client", {
+		headers: { host: "tomkoreny.com" },
+		maxRedirects: 0,
+	});
+	expect(client.status()).toBe(200);
+	expect(client.headers()["access-control-allow-origin"]).toBe("*");
+	expect(await client.json()).toEqual({
+		"m.homeserver": {
+			base_url: "https://matrix.tomkoreny.com/",
+		},
+		"org.matrix.msc4143.rtc_foci": [
+			{
+				type: "livekit",
+				livekit_service_url: "https://call.tomkoreny.com/livekit/jwt",
+			},
+		],
+	});
+});
