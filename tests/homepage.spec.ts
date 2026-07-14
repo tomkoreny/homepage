@@ -190,6 +190,23 @@ test("publishes crawler discovery files and canonicalizes the host", async ({
 	expect(xml).toContain("https://www.tomkoreny.com/privacy");
 });
 
+test("delegates Mastodon WebFinger from the apex host", async ({ request }) => {
+	const response = await request.get(
+		"/.well-known/webfinger?resource=acct:tom@tomkoreny.com",
+		{
+			headers: { host: "tomkoreny.com" },
+			maxRedirects: 0,
+		},
+	);
+
+	expect(response.status()).toBe(308);
+	const location = new URL(response.headers().location);
+	expect(location.origin + location.pathname).toBe(
+		"https://mstdn.tomkoreny.com/.well-known/webfinger",
+	);
+	expect(location.searchParams.get("resource")).toBe("acct:tom@tomkoreny.com");
+});
+
 test("serves Matrix discovery directly from the apex host", async ({
 	request,
 }) => {

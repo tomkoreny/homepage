@@ -43,6 +43,14 @@ const nextConfig = {
 	async redirects() {
 		return [
 			{
+				// Keep handles on the apex domain while serving Mastodon from mstdn.
+				// Next.js preserves the WebFinger resource query parameter.
+				source: "/.well-known/webfinger",
+				has: [{ type: "host", value: "tomkoreny.com" }],
+				destination: "https://mstdn.tomkoreny.com/.well-known/webfinger",
+				permanent: true,
+			},
+			{
 				// Matrix federation and client discovery must be served directly from
 				// the server-name host. Redirecting these endpoints breaks delegation.
 				source: "/:path((?!\\.well-known/matrix/).*)",
