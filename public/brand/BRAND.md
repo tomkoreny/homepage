@@ -47,6 +47,7 @@ The canonical vector geometry lives in `src/app/tk-mark.json`. The homepage and 
 - The mark may carry its established slight counter-clockwise rotation in expressive placements.
 - Keep the asymmetric overlap and the longer lower K leg.
 - Clear space: leave at least 8% of the asset width around the visible mark.
+- Avatar exports keep every visible pixel within a circle whose radius is 46% of the canvas, leaving room for platform masks and antialiasing.
 - Minimum recommended digital size: 32px for the standalone mark, 180px wide for the horizontal lockup, and 140px wide for the standalone wordmark.
 
 ## Asset chooser

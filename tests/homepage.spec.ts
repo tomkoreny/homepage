@@ -227,6 +227,50 @@ test("reflows at 320px", async ({ page }) => {
 	await expect(footer.getByRole("link", { name: "Privacy" })).toBeVisible();
 });
 
+test("keeps avatar exports inside their circular safe area", async ({ page }) => {
+	await page.goto("/");
+
+	const failures = await page.evaluate(async () => {
+		const variants = ["color", "ink", "white"];
+		const sizes = [1024, 512, 256, 128, 64, 32];
+		const unsafe: string[] = [];
+
+		for (const variant of variants) {
+			for (const size of sizes) {
+				const image = new Image();
+				image.src = `/brand/png/avatars/tk-avatar-${variant}-${size}x${size}.png`;
+				await image.decode();
+
+				const canvas = document.createElement("canvas");
+				canvas.width = size;
+				canvas.height = size;
+				const context = canvas.getContext("2d");
+				if (!context) throw new Error("Canvas 2D context unavailable");
+				context.drawImage(image, 0, 0);
+				const pixels = context.getImageData(0, 0, size, size).data;
+				const center = size / 2;
+				const safeRadius = size * 0.46;
+
+				for (let y = 0; y < size; y += 1) {
+					for (let x = 0; x < size; x += 1) {
+						const alpha = pixels[(y * size + x) * 4 + 3];
+						if (alpha <= 8) continue;
+						if (Math.hypot(x + 0.5 - center, y + 0.5 - center) > safeRadius) {
+							unsafe.push(`${variant}-${size}`);
+							y = size;
+							break;
+						}
+					}
+				}
+			}
+		}
+
+		return unsafe;
+	});
+
+	expect(failures).toEqual([]);
+});
+
 test("serves explicit and negotiated terminal profiles", async ({ request }) => {
 	const plain = await request.get("/about.txt");
 	const plainBody = await plain.text();

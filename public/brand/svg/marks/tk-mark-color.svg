@@ -2,5 +2,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="320" height="320" viewBox="0 0 320 320" role="img" aria-labelledby="title description">
   <title id="title">TK mark — color</title>
   <desc id="description">Angular overlapping TK monogram for Tom Korený.</desc>
-  <defs><g id="tk-mark-geometry"><path d="M14 21 247 5l10 52-88 7 25 135-70 14L97 69l-73 7Z"/><path d="M145 108 262 20 307 55 178 136Z"/><path d="M169 119 314 171 287 215 142 145Z"/></g></defs><g transform="translate(17 66) scale(0.86) rotate(-7 160 110)"><g color="#FF5A1F" transform="translate(8 7)"><use href="#tk-mark-geometry" fill="currentColor"/></g><g color="#263CFF"><use href="#tk-mark-geometry" fill="currentColor"/></g></g>
+  <defs><g id="tk-mark-geometry"><path d="M14 21 247 5l10 52-88 7 25 135-70 14L97 69l-73 7Z"/><path d="M145 108 262 20 307 55 178 136Z"/><path d="M169 119 314 171 287 215 142 145Z"/></g></defs><g transform="translate(47 86) scale(0.68) rotate(-7 160 110)"><g color="#FF5A1F" transform="translate(8 7)"><use href="#tk-mark-geometry" fill="currentColor"/></g><g color="#263CFF"><use href="#tk-mark-geometry" fill="currentColor"/></g></g>
 </svg>

@@ -2,6 +2,10 @@
   "name": "Tom Korený brand kit",
   "version": 1,
   "source": "src/app/tk-mark.json",
+  "avatarSafeArea": {
+    "shape": "circle",
+    "maxOpaqueRadius": 0.46
+  },
   "palette": {
     "paper": "#E9EDF2",
     "ink": "#090A0C",
