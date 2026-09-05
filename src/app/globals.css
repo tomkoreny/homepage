@@ -112,8 +112,8 @@ body {
 
 .tk-mark {
   position: relative;
-  width: min(39rem, 52vw);
-  aspect-ratio: 280 / 220;
+  width: min(44.6rem, 59.5vw);
+  aspect-ratio: 320 / 220;
   transform: rotate(-7deg);
 }
 
@@ -597,7 +597,7 @@ footer p {
   }
 
   .tk-mark {
-    width: min(31rem, 92vw);
+    width: min(35.5rem, 105.2vw);
   }
 
   .mark-column p {

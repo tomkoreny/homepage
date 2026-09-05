@@ -1,8 +1,8 @@
-export const TK_MARK_VIEWBOX = "0 0 280 220";
+export const TK_MARK_VIEWBOX = "0 0 320 220";
 export const TK_MARK_PATHS = [
 	"M14 21 247 5l10 52-88 7 25 135-70 14L97 69l-73 7Z",
-	"m145 108 86-59 43 34-96 53Z",
-	"m169 119 106 65-31 34-102-73Z",
+	"M145 108 262 20 307 55 178 136Z",
+	"M169 119 314 171 287 215 142 145Z",
 ];
 
 function MarkSvg() {

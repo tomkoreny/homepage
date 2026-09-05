@@ -19,8 +19,8 @@ type MarkVariant = {
 
 const markVariants: MarkVariant[] = [
 	{
-		name: "05 / Compact square",
-		note: "The selected control. Every following mark keeps this T and upper K arm.",
+		name: "05 / Compact square (control)",
+		note: "The round-two control. Every following mark keeps this T and upper K arm.",
 		paths: [
 			T_PATH,
 			COMPACT_UPPER_K_PATH,
@@ -28,8 +28,8 @@ const markVariants: MarkVariant[] = [
 		],
 	},
 	{
-		name: "06 / Raised lower",
-		note: "The lower leg finishes higher, creating a flatter and more compact kick.",
+		name: "06 / Raised lower (active)",
+		note: "The active main logo: a flatter, more compact lower-leg kick.",
 		paths: [
 			T_PATH,
 			COMPACT_UPPER_K_PATH,
@@ -127,9 +127,9 @@ export default function LogoLabPage() {
 				<Link href="/">← Homepage</Link>
 				<h1>TK mark lab</h1>
 				<p>
-					Variant 05 is the control. Every specimen keeps its T and upper K arm
-					fixed while only the lower leg moves. The accepted original remains
-					active on the homepage.
+					Variant 05 is the round-two control. Every specimen keeps its T and
+					upper K arm fixed while only the lower leg moves. Variant 06 is active
+					on the homepage.
 				</p>
 			</header>
 

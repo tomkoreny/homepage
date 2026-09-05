@@ -5,7 +5,7 @@ function Mark({ color, left, top }: { color: string; left: number; top: number }
 	return (
 		<svg
 			viewBox={TK_MARK_VIEWBOX}
-			width="520"
+			width="594"
 			height="409"
 			style={{
 				fill: color,
