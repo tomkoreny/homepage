@@ -350,6 +350,8 @@ test("publishes crawler discovery files and canonicalizes the host", async ({
 	expect(canonicalRedirect.headers().location).toMatch(
 		/^https:\/\/www\.tomkoreny\.com\/?$/,
 	);
+	expect(canonicalRedirect.headers().vary).toContain("Accept");
+	expect(canonicalRedirect.headers().vary).toContain("User-Agent");
 
 	const robots = await request.get("/robots.txt");
 	expect(robots.ok()).toBeTruthy();

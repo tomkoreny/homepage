@@ -75,7 +75,9 @@ export function proxy(request: NextRequest) {
 		canonicalUrl.protocol = "https:";
 		canonicalUrl.hostname = "www.tomkoreny.com";
 		canonicalUrl.port = "";
-		return NextResponse.redirect(canonicalUrl, 308);
+		const response = NextResponse.redirect(canonicalUrl, 308);
+		response.headers.set("Vary", "Accept, User-Agent");
+		return response;
 	}
 
 	const response = NextResponse.next();
