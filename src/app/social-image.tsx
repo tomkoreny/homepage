@@ -3,18 +3,19 @@ import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { TK_MARK_PATHS, TK_MARK_VIEWBOX } from "./tk-mark";
 
-function loadFont(fileName: string) {
-	return readFile(join(process.cwd(), "src/app/fonts", fileName)).then(
-		(data) =>
-			data.buffer.slice(
-				data.byteOffset,
-				data.byteOffset + data.byteLength,
-			) as ArrayBuffer,
-	);
+function asArrayBuffer(data: Uint8Array) {
+	return data.buffer.slice(
+		data.byteOffset,
+		data.byteOffset + data.byteLength,
+	) as ArrayBuffer;
 }
 
-const headingFont = loadFont("bowlby-one-sc-regular.ttf");
-
+const headingFont = readFile(
+	join(process.cwd(), "public/fonts/bowlby-one-sc-regular.ttf"),
+).then(asArrayBuffer);
+const bodyFont = readFile(
+	join(process.cwd(), "public/fonts/liberation-sans-regular.ttf"),
+).then(asArrayBuffer);
 function Mark({ color, left, top }: { color: string; left: number; top: number }) {
 	return (
 		<svg
@@ -37,7 +38,10 @@ function Mark({ color, left, top }: { color: string; left: number; top: number }
 }
 
 export async function createSocialImage() {
-	const headingFontData = await headingFont;
+	const [bodyFontData, headingFontData] = await Promise.all([
+		bodyFont,
+		headingFont,
+	]);
 
 	return new ImageResponse(
 		<div
@@ -45,6 +49,7 @@ export async function createSocialImage() {
 				background: "#e9edf2",
 				color: "#090a0c",
 				display: "flex",
+				fontFamily: "Body",
 				height: "100%",
 				overflow: "hidden",
 				position: "relative",
@@ -78,9 +83,9 @@ export async function createSocialImage() {
 					style={{
 						display: "flex",
 						flexDirection: "column",
-						fontFamily: "Bowlby One SC",
+						fontFamily: "Heading",
 						fontSize: 82,
-						fontWeight: 900,
+						fontWeight: 400,
 						letterSpacing: "-4px",
 						lineHeight: 0.84,
 					}}
@@ -98,14 +103,30 @@ export async function createSocialImage() {
 						width: "470px",
 					}}
 				/>
+				<div
+					style={{
+						display: "flex",
+						fontFamily: "Body",
+						fontSize: 25,
+						fontWeight: 400,
+						marginTop: "25px",
+					}}
+				>
+					Software developer. DevOps engineer. Rally driver.
+				</div>
 			</div>
 		</div>,
 		{
 			fonts: [
 				{
-					name: "Bowlby One SC",
+					name: "Body",
+					data: bodyFontData,
+					weight: 400,
+				},
+				{
+					name: "Heading",
 					data: headingFontData,
-					weight: 900,
+					weight: 400,
 				},
 			],
 			width: 1200,

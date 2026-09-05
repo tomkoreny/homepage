@@ -15,7 +15,7 @@
   --color-fg: var(--ink);
   --color-blue: var(--blue);
   --color-orange: var(--orange);
-  --font-sans: Arial, Helvetica, sans-serif;
+  --font-sans: var(--font-body), Arial, Helvetica, sans-serif;
   --font-mono: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
 
@@ -42,7 +42,7 @@ body {
     radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--ink) 10%, transparent) 1px, transparent 0) 0 0 / 17px 17px,
     var(--paper);
   color: var(--ink);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), Arial, Helvetica, sans-serif;
 }
 
 ::selection {
