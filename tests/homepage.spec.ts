@@ -50,17 +50,29 @@ test("renders the homepage, metadata, links, and analytics under CSP", async ({
 		"content",
 		/opengraph-image/,
 	);
-	const personSchemaText = await page
+	const schemaText = await page
 		.locator('script[type="application/ld+json"]')
 		.textContent();
-	expect(personSchemaText).not.toBeNull();
-	const personSchema = JSON.parse(personSchemaText ?? "");
-	expect(personSchema).toMatchObject({
-		"@type": "Person",
+	expect(schemaText).not.toBeNull();
+	const schema = JSON.parse(schemaText ?? "");
+	const website = schema["@graph"].find(
+		(node: Record<string, unknown>) => node["@type"] === "WebSite",
+	);
+	const person = schema["@graph"].find(
+		(node: Record<string, unknown>) => node["@type"] === "Person",
+	);
+	expect(website).toMatchObject({
+		"@id": "https://www.tomkoreny.com/#website",
+		url: "https://www.tomkoreny.com",
+		author: { "@id": "https://www.tomkoreny.com/#person" },
+	});
+	expect(person).toMatchObject({
+		"@id": "https://www.tomkoreny.com/#person",
 		name: "Tom Korený",
 		url: "https://www.tomkoreny.com",
+		mainEntityOfPage: { "@id": "https://www.tomkoreny.com/#website" },
 	});
-	expect(personSchema.sameAs).toContain("https://github.com/tomkoreny");
+	expect(person.sameAs).toContain("https://github.com/tomkoreny");
 
 	const externalLinks = page.locator('a[target="_blank"]');
 	for (const link of await externalLinks.all()) {

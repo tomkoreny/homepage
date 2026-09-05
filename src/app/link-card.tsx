@@ -1,18 +1,16 @@
-import type { ReactNode } from "react";
-
 type LinkCardProps = {
+	className?: string;
 	description?: string;
 	href: string;
-	icon: ReactNode;
 	label: string;
 	relationship?: string;
-	variant: "featured" | "compact";
+	variant: "primary" | "wire";
 };
 
 export function LinkCard({
+	className = "",
 	description,
 	href,
-	icon,
 	label,
 	relationship,
 	variant,
@@ -27,19 +25,13 @@ export function LinkCard({
 			href={href}
 			target={opensInNewTab ? "_blank" : undefined}
 			rel={rel}
-			className={`link-card link-card-${variant}`}
+			className={`punk-link punk-link-${variant} ${className}`.trim()}
 		>
-			<span aria-hidden="true" className="link-icon">
-				{icon}
-			</span>
-			<span className="link-copy">
-				<strong>{label}</strong>
-				{description && <small>{description}</small>}
-				{opensInNewTab && (
-					<span className="sr-only"> (opens in a new tab)</span>
-				)}
-			</span>
-			<span className="link-stripe" aria-hidden="true" />
+			<strong>{label}</strong>
+			{description && <small>{description}</small>}
+			{opensInNewTab && (
+				<span className="sr-only"> (opens in a new tab)</span>
+			)}
 		</a>
 	);
 }

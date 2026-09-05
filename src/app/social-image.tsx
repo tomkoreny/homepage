@@ -1,113 +1,111 @@
 import { ImageResponse } from "next/og";
+import { TK_MARK_PATHS } from "./tk-mark";
+
+function Mark({ color, left, top }: { color: string; left: number; top: number }) {
+	return (
+		<svg
+			viewBox="0 0 280 220"
+			width="520"
+			height="409"
+			style={{
+				fill: color,
+				left,
+				position: "absolute",
+				top,
+				transform: "rotate(-7deg)",
+			}}
+		>
+			{TK_MARK_PATHS.map((path) => (
+				<path d={path} fill={color} key={path} />
+			))}
+		</svg>
+	);
+}
 
 export function createSocialImage() {
 	return new ImageResponse(
 		<div
 			style={{
-				alignItems: "center",
-				background: "#f4f5f2",
-				color: "#111318",
+				background: "#e9edf2",
+				color: "#090a0c",
 				display: "flex",
 				height: "100%",
-				padding: "54px",
+				overflow: "hidden",
+				position: "relative",
 				width: "100%",
 			}}
 		>
 			<div
 				style={{
-					alignItems: "stretch",
-					background: "#ffffff",
-					border: "8px solid #111318",
-					boxShadow: "18px 18px 0 #3155ff",
+					background: "#263cff",
+					height: "170px",
+					position: "absolute",
+					right: "-90px",
+					top: "18px",
+					transform: "rotate(-9deg)",
+					width: "760px",
+				}}
+			/>
+			<Mark color="#ff5a1f" left={-29} top={88} />
+			<Mark color="#263cff" left={-42} top={76} />
+			<div
+				style={{
 					display: "flex",
-					height: "100%",
-					overflow: "hidden",
-					position: "relative",
-					width: "100%",
+					flexDirection: "column",
+					left: "410px",
+					position: "absolute",
+					top: "155px",
+					width: "730px",
 				}}
 			>
 				<div
 					style={{
-						backgroundImage:
-							"repeating-linear-gradient(90deg, #ff4f00 0 34px, #111318 34px 68px)",
+						alignSelf: "flex-start",
+						background: "#090a0c",
+						color: "#e9edf2",
 						display: "flex",
-						height: "18px",
-						left: 0,
-						position: "absolute",
-						top: 0,
-						width: "420px",
+						fontSize: 22,
+						fontWeight: 800,
+						padding: "7px 12px",
+						transform: "rotate(-2deg)",
+					}}
+				>
+					tomkoreny.com
+				</div>
+				<div
+					style={{
+						display: "flex",
+						flexDirection: "column",
+						fontSize: 100,
+						fontWeight: 900,
+						letterSpacing: "-7px",
+						lineHeight: 0.8,
+						marginTop: "20px",
+						textTransform: "uppercase",
+					}}
+				>
+					<span>Tom</span>
+					<span>Korený</span>
+				</div>
+				<div
+					style={{
+						background: "#ff5a1f",
+						display: "flex",
+						height: "12px",
+						marginTop: "28px",
+						transform: "skewX(-24deg)",
+						width: "430px",
 					}}
 				/>
 				<div
 					style={{
 						display: "flex",
-						flex: 1,
-						flexDirection: "column",
-						justifyContent: "center",
-						padding: "58px 42px 42px 58px",
+						fontSize: 27,
+						fontWeight: 700,
+						marginTop: "24px",
 					}}
 				>
-					<div
-						style={{
-							display: "flex",
-							fontSize: 86,
-							fontWeight: 900,
-							letterSpacing: "-5px",
-							lineHeight: 0.9,
-						}}
-					>
-						TOM KORENÝ
-					</div>
-					<div
-						style={{
-							display: "flex",
-							fontSize: 29,
-							fontWeight: 700,
-							marginTop: "30px",
-						}}
-					>
-						Software developer. DevOps engineer. Rally driver.
-					</div>
-					<div
-						style={{
-							color: "#3155ff",
-							display: "flex",
-							fontSize: 24,
-							fontWeight: 800,
-							marginTop: "38px",
-						}}
-					>
-						tomkoreny.com
-					</div>
-				</div>
-				<div
-					style={{
-						alignItems: "center",
-						background: "#ff4f00",
-						display: "flex",
-						justifyContent: "center",
-						width: "310px",
-					}}
-				>
-					<div
-						style={{
-							alignItems: "center",
-							background: "#3155ff",
-							border: "16px solid #f4f5f2",
-							borderRadius: "50%",
-							boxShadow: "10px 10px 0 #111318",
-							color: "#ffffff",
-							display: "flex",
-							fontSize: 96,
-							fontWeight: 900,
-							height: "210px",
-							justifyContent: "center",
-							letterSpacing: "-8px",
-							width: "210px",
-						}}
-					>
-						TK
-					</div>
+					Software / infrastructure / electric rally
 				</div>
 			</div>
 		</div>,
