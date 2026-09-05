@@ -194,111 +194,97 @@ const icons: Record<string, ReactNode> = {
 	),
 };
 
-const sections = [
+const featuredLinks = [
 	{
-		title: "// cv",
-		links: [
-			{
-				label: "CV",
-				href: "https://cv.tomkoreny.com/tom/tom-koreny-cv",
-				icon: "cv",
-				accent: true,
-			},
-		],
+		label: "CV",
+		description: "Experience and work history",
+		href: "https://cv.tomkoreny.com/tom/tom-koreny-cv",
+		icon: "cv",
 	},
 	{
-		title: "// socials",
+		label: "Blog",
+		description: "Writing and field notes",
+		href: "https://blog.tomkoreny.com",
+		icon: "blog",
+	},
+	{
+		label: "GitHub",
+		description: "Public code and projects",
+		href: "https://github.com/tomkoreny",
+		icon: "github",
+	},
+	{
+		label: "Email",
+		description: "tom@tomkoreny.com",
+		href: "mailto:tom@tomkoreny.com",
+		icon: "email",
+	},
+];
+
+const linkGroups = [
+	{
+		title: "Social",
 		links: [
 			{
 				label: "Instagram",
 				href: "https://instagram.com/tomkoreny",
 				icon: "instagram",
-				accent: false,
 			},
 			{
 				label: "Facebook",
 				href: "https://facebook.com/puma2254",
 				icon: "facebook",
-				accent: false,
 			},
 			{
 				label: "X / Twitter",
 				href: "https://x.com/tomkoreny",
 				icon: "x",
-				accent: false,
 			},
 			{
 				label: "LinkedIn",
 				href: "https://linkedin.com/in/tomkoreny",
 				icon: "linkedin",
-				accent: false,
 			},
+		],
+	},
+	{
+		title: "Communities",
+		links: [
 			{
 				label: "Mastodon",
 				href: "https://mstdn.tomkoreny.com/@tom",
 				icon: "mastodon",
-				accent: false,
 				rel: "me",
 			},
 			{
 				label: "Lemmy",
 				href: "https://lemmy.tomkoreny.com/u/tom",
 				icon: "lemmy",
-				accent: false,
 			},
 			{
 				label: "Discord",
 				href: "https://discordapp.com/users/213647399812464640",
 				icon: "discord",
-				accent: false,
 			},
-			// { label: 'Reddit', href: 'https://reddit.com/u/Pumicek', icon: 'reddit', accent: false },
-			// { label: 'Twitch', href: 'https://twitch.tv/pumpicek', icon: 'twitch', accent: false },
 			{
 				label: "Steam",
 				href: "https://steamcommunity.com/id/puma2254",
 				icon: "steam",
-				accent: false,
 			},
 		],
 	},
 	{
-		title: "// projects",
+		title: "Elsewhere",
 		links: [
-			{
-				label: "Blog",
-				href: "https://blog.tomkoreny.com",
-				icon: "blog",
-				accent: true,
-			},
-			{
-				label: "GitHub",
-				href: "https://github.com/tomkoreny",
-				icon: "github",
-				accent: true,
-			},
 			{
 				label: "Git",
 				href: "https://git.tomkoreny.com",
 				icon: "forgejo",
-				accent: true,
-			},
-		],
-	},
-	{
-		title: "// contact",
-		links: [
-			{
-				label: "Email",
-				href: "mailto:tom@tomkoreny.com",
-				icon: "email",
-				accent: false,
 			},
 			{
 				label: "Matrix",
 				href: "https://matrix.to/#/@tom:tomkoreny.com",
 				icon: "matrix",
-				accent: false,
 			},
 		],
 	},
@@ -336,126 +322,146 @@ const techStack = [
 	"Linux",
 ];
 
+const personJsonLd = {
+	"@context": "https://schema.org",
+	"@type": "Person",
+	name: "Tom Korený",
+	url: "https://www.tomkoreny.com",
+	description,
+	jobTitle: "Software Developer and DevOps Engineer",
+	homeLocation: {
+		"@type": "Place",
+		name: "Prague, Czech Republic",
+	},
+	knowsAbout: [
+		"Software development",
+		"DevOps",
+		"Open source software",
+		"Self-hosting",
+		"NixOS",
+		"Kubernetes",
+		"TypeScript",
+		"Linux",
+	],
+	sameAs: [
+		"https://github.com/tomkoreny",
+		"https://linkedin.com/in/tomkoreny",
+		"https://mstdn.tomkoreny.com/@tom",
+		"https://lemmy.tomkoreny.com/u/tom",
+		"https://instagram.com/tomkoreny",
+		"https://facebook.com/puma2254",
+		"https://x.com/tomkoreny",
+	],
+};
+
 export default function Home() {
 	return (
-		<main className="relative flex min-h-screen flex-col items-center overflow-hidden px-4 py-12 md:py-20">
+		<main className="site-main">
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{
+					__html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c"),
+				}}
+			/>
 			<ThemeToggle />
 
-			<div
-				aria-hidden="true"
-				className="fixed -right-16 top-20 -z-10 h-64 w-64 rotate-12 border-3 border-blue/20 bg-blue/10"
-			/>
-			<div
-				aria-hidden="true"
-				className="fixed -left-12 bottom-20 -z-10 h-48 w-48 -rotate-6 border-3 border-orange/20 bg-orange/10"
-			/>
-			<div
-				aria-hidden="true"
-				className="fixed left-1/4 top-1/2 -z-10 h-4 w-4 rotate-45 bg-orange"
-			/>
+			<div className="track-line track-line-left" aria-hidden="true" />
+			<div className="track-line track-line-right" aria-hidden="true" />
 
-			<div className="content-stack w-full max-w-lg space-y-8">
-				<header className="space-y-4 text-center">
-					<div className="relative inline-block">
-						<div className="avatar-ring corner-mark relative flex h-28 w-28 items-center justify-center rounded-full bg-blue text-5xl">
-							<span className="select-none" aria-hidden="true">
-								🧑‍💻
-							</span>
+			<div className="site-shell">
+				<header className="hero">
+					<div className="hero-copy">
+						<p className="location-line">Prague, Czech Republic</p>
+						<h1>Tom Korený</h1>
+						<p className="hero-role">
+							Software developer. DevOps engineer. Rally driver.
+						</p>
+						<p className="hero-intro">
+							I build software and infrastructure, automate the repetitive
+							parts, and race electric cars on weekends. Open source,
+							self-hosting, and resilient systems keep me curious.
+						</p>
+						<div className="hero-tags" aria-label="Focus areas">
+							<span>Software</span>
+							<span>Infrastructure</span>
+							<span>Electric rally</span>
 						</div>
-						<div
-							aria-hidden="true"
-							className="absolute -bottom-1 -right-1 h-6 w-6 rounded-full border-3 border-border bg-orange"
-						/>
 					</div>
 
-					<div className="relative">
-						<h1 className="relative uppercase leading-[0.85]">
-							<span className="graffiti-orange inline-block rotate-2 text-7xl md:text-9xl">
-								<span className="text-[1.15em]">T</span>om
-							</span>
-							<br />
-							<span className="graffiti-blue relative mt-1 inline-block -rotate-3 text-6xl md:text-8xl">
-								<span className="text-[1.15em]">K</span>orený
-								<span className="absolute -right-3 -top-6 rotate-12 border-2 border-white bg-orange px-1.5 py-0.5 font-mono text-[0.55rem] font-bold text-on-orange [filter:none] [-webkit-text-stroke:0] [text-shadow:none]">
-									.com
-								</span>
-							</span>
-						</h1>
-						<p className="mt-4 font-mono text-xs uppercase tracking-[0.2em] text-fg/75">
-							Software Dev · DevOps · Rally Driver
-						</p>
-					</div>
-
-					<div className="neo-card corner-mark relative p-4 text-left">
-						<p className="text-[0.95rem] leading-relaxed">
-							Software developer &amp; infrastructure nerd based in Prague, 🇨🇿.
-							I write code, automate everything, and race electric cars on
-							weekends. Passionate about{" "}
-							<span className="bg-orange px-1 font-bold text-on-orange">
-								open source
-							</span>
-							,{" "}
-							<span className="bg-blue px-1 font-bold text-white">
-								self-hosting
-							</span>
-							, and{" "}
-							<span className="bg-red-700 px-1 font-bold text-white">AI</span>{" "}
-							🦞 — keeping things running at 3 AM so you don&apos;t have to.
-						</p>
+					<div className="identity-stage" aria-hidden="true">
+						<div className="start-lights">
+							<span />
+							<span />
+							<span />
+						</div>
+						<div className="identity-badge">
+							<span>TK</span>
+						</div>
+						<div className="badge-caption">
+							<span>Build</span>
+							<span>Operate</span>
+							<span>Race</span>
+						</div>
 					</div>
 				</header>
 
-				{sections.map((section) => (
-					<section key={section.title} className="space-y-3">
-						<h2 className="ml-1 font-mono text-xs font-bold uppercase tracking-widest text-fg/75">
-							{section.title}
-						</h2>
-						{section.links.map((link) => (
+				<section className="section-block" aria-labelledby="start-here">
+					<div className="section-heading">
+						<h2 id="start-here">Start here</h2>
+					</div>
+					<div className="featured-grid">
+						{featuredLinks.map((link) => (
 							<LinkCard
 								key={link.label}
-								accent={link.accent}
+								description={link.description}
 								href={link.href}
 								icon={icons[link.icon]}
 								label={link.label}
-								relationship={"rel" in link ? link.rel : undefined}
+								variant="featured"
 							/>
 						))}
-					</section>
-				))}
-
-				<section className="space-y-3">
-					<h2 className="ml-1 font-mono text-xs font-bold uppercase tracking-widest text-fg/75">
-						{"// tech stack"}
-					</h2>
-					<div className="neo-card overflow-hidden p-0">
-						<div className="overflow-hidden py-3" aria-label="Technology stack">
-							<div className="marquee-track flex w-max gap-4 whitespace-nowrap">
-								{[...techStack, ...techStack].map((tech, index) => (
-									<span
-										key={`${tech}-${index}`}
-										className="neo-tag inline-block"
-										aria-hidden={index >= techStack.length ? "true" : undefined}
-									>
-										{tech}
-									</span>
-								))}
-							</div>
-						</div>
 					</div>
 				</section>
 
-				<footer className="space-y-2 pt-4 text-center">
-					<div className="flex items-center justify-center gap-3 font-mono text-xs text-fg/70">
-						<span aria-hidden="true">▪</span>
-						<span>tomkoreny.com</span>
-						<span aria-hidden="true">▪</span>
-						<span>{new Date().getFullYear()}</span>
-						<span aria-hidden="true">▪</span>
+				<section className="section-block" aria-labelledby="elsewhere">
+					<div className="section-heading">
+						<h2 id="elsewhere">Find me elsewhere</h2>
 					</div>
-					<InternalLink
-						className="footer-link font-mono text-xs"
-						href="/privacy"
-					>
+					<div className="link-groups">
+						{linkGroups.map((group) => (
+							<section className="link-group" key={group.title}>
+								<h3>{group.title}</h3>
+								<div className="compact-link-list">
+									{group.links.map((link) => (
+										<LinkCard
+											key={link.label}
+											href={link.href}
+											icon={icons[link.icon]}
+											label={link.label}
+											relationship={"rel" in link ? link.rel : undefined}
+											variant="compact"
+										/>
+									))}
+								</div>
+							</section>
+						))}
+					</div>
+				</section>
+
+				<section className="section-block" aria-labelledby="toolbox">
+					<div className="section-heading">
+						<h2 id="toolbox">Toolbox</h2>
+					</div>
+					<ul className="tech-grid" aria-label="Technology stack">
+						{techStack.map((tech) => (
+							<li key={tech}>{tech}</li>
+						))}
+					</ul>
+				</section>
+
+				<footer>
+					<p>Tom Korený · {new Date().getFullYear()}</p>
+					<InternalLink className="footer-link" href="/privacy">
 						Privacy
 					</InternalLink>
 				</footer>

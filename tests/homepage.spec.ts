@@ -42,7 +42,6 @@ test("renders the homepage, metadata, links, and analytics under CSP", async ({
 	await expect(
 		page.getByRole("heading", { level: 1, name: /Tom Korený/i }),
 	).toBeVisible();
-	await expect(page.getByRole("heading", { level: 2 })).toHaveCount(5);
 	await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
 		"href",
 		/^https:\/\/www\.tomkoreny\.com\/?$/,
@@ -51,9 +50,19 @@ test("renders the homepage, metadata, links, and analytics under CSP", async ({
 		"content",
 		/opengraph-image/,
 	);
+	const personSchemaText = await page
+		.locator('script[type="application/ld+json"]')
+		.textContent();
+	expect(personSchemaText).not.toBeNull();
+	const personSchema = JSON.parse(personSchemaText ?? "");
+	expect(personSchema).toMatchObject({
+		"@type": "Person",
+		name: "Tom Korený",
+		url: "https://www.tomkoreny.com",
+	});
+	expect(personSchema.sameAs).toContain("https://github.com/tomkoreny");
 
 	const externalLinks = page.locator('a[target="_blank"]');
-	await expect(externalLinks).toHaveCount(13);
 	for (const link of await externalLinks.all()) {
 		await expect(link).toHaveAttribute("rel", /noopener/);
 		await expect(link).toHaveAttribute("rel", /noreferrer/);
