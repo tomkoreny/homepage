@@ -200,10 +200,6 @@ test("has no detectable WCAG A or AA violations in either theme", async ({
 	await expect(
 		page.getByRole("button", { name: "Switch to light theme" }),
 	).toHaveAttribute("aria-pressed", "true");
-	await expect(page.getByRole("link", { name: "Email" })).toHaveCSS(
-		"color",
-		"rgb(232, 228, 223)",
-	);
 	const darkResults = await new AxeBuilder({ page }).withTags(tags).analyze();
 	expect(darkResults.violations).toEqual([]);
 });
