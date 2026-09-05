@@ -265,6 +265,7 @@ test("serves explicit and negotiated terminal profiles", async ({ request }) => 
 	});
 	expect(explicitHtml.headers()["content-type"]).toContain("text/html");
 	expect(await explicitHtml.text()).toContain("<!DOCTYPE html>");
+	expect(explicitHtml.headers()["cache-control"]).toMatch(/private|no-store/);
 
 	const explicitJson = await request.get("/", {
 		headers: {

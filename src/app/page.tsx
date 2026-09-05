@@ -7,6 +7,8 @@ import { TkMark } from "./tk-mark";
 
 const description = `${profile.subtitle} ${profile.intro}`;
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
 	title: "Tom Korený — Software Developer & DevOps Engineer",
 	description,
