@@ -36,6 +36,7 @@ Do not substitute softened navy, pastel orange, beige, or a generic near-black g
 - **Body:** Liberation Sans, weight 400–700. Use for readable supporting copy and metadata.
 - Keep display tracking tight and body copy comfortably spaced.
 - Prefer sentence case for interface labels. The wordmark is the deliberate uppercase exception.
+- In the wordmark, `TOM` is intentionally set at 85% of `KORENÝ`; keep its letters tightly overlapped so the surname carries more emphasis.
 
 The SVG wordmarks are converted to paths and do not require either font to be installed.
 
