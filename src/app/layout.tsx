@@ -39,10 +39,10 @@ export const metadata: Metadata = {
 	creator: "Tom Korený",
 	icons: {
 		icon: [
-			{ url: "/favicon.svg", type: "image/svg+xml" },
-			{ url: "/favicon.ico", sizes: "any" },
+			{ url: "/favicon.svg?v=tk-mark-1", type: "image/svg+xml" },
+			{ url: "/favicon.ico?v=tk-mark-1", sizes: "any" },
 		],
-		apple: "/apple-touch-icon.png",
+		apple: "/apple-touch-icon.png?v=tk-mark-1",
 	},
 };
 
