@@ -113,7 +113,7 @@ body {
 .tk-mark {
   position: relative;
   width: min(39rem, 52vw);
-  aspect-ratio: 280 / 220;
+  aspect-ratio: 340 / 230;
   transform: rotate(-7deg);
 }
 
@@ -702,5 +702,158 @@ footer p {
   *::after {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+.logo-lab-page {
+  width: min(100%, 88rem);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 5rem);
+}
+
+.logo-lab-page > header {
+  max-width: 52rem;
+  margin-bottom: 4rem;
+}
+
+.logo-lab-page > header a {
+  color: var(--blue);
+  font-weight: 900;
+  text-underline-offset: 0.25rem;
+}
+
+.logo-lab-page > header h1 {
+  margin: 1.5rem 0 1rem;
+  font-family: var(--font-heading), Arial Black, sans-serif;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  line-height: 0.82;
+  text-transform: uppercase;
+}
+
+.logo-lab-page > header p {
+  max-width: 62ch;
+  color: var(--faded);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.logo-comparison {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.logo-comparison article {
+  overflow: hidden;
+  border: 0.25rem solid var(--ink);
+  background: var(--sheet);
+}
+
+.logo-comparison h2 {
+  position: relative;
+  z-index: 2;
+  width: fit-content;
+  margin: 1rem;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.35rem 0.55rem;
+  font-size: 0.9rem;
+}
+
+.lab-layered-mark {
+  position: relative;
+  width: 88%;
+  aspect-ratio: 340 / 230;
+  margin: 2rem auto 3rem;
+  transform: rotate(-5deg);
+}
+
+.lab-layered-mark svg {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.lab-underprint {
+  color: var(--orange);
+  transform: translate(0.65rem, 0.55rem);
+}
+
+.lab-blue-ink {
+  color: var(--blue);
+}
+
+.logo-scale-check {
+  margin-top: 5rem;
+  border-top: 0.35rem solid var(--ink);
+  padding-top: 2rem;
+}
+
+.logo-scale-check > h2 {
+  margin: 0 0 2rem;
+  font-family: var(--font-heading), Arial Black, sans-serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.logo-scale-check > div {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.logo-scale-check article {
+  border-left: 0.6rem solid var(--blue);
+  background: var(--sheet);
+  padding: 1.5rem;
+}
+
+.logo-scale-check h3 {
+  margin: 0 0 1.5rem;
+  font-size: 1rem;
+}
+
+.lab-size-strip {
+  display: flex;
+  min-height: 10rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: end;
+}
+
+.lab-size-strip figure {
+  display: grid;
+  place-items: center;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.lab-size-strip svg {
+  display: block;
+  height: auto;
+  fill: currentColor;
+}
+
+.lab-size-strip figcaption {
+  color: var(--faded);
+  font-family: ui-monospace, monospace;
+  font-size: 0.72rem;
+}
+
+@media (max-width: 700px) {
+  .logo-comparison,
+  .logo-scale-check > div {
+    grid-template-columns: 1fr;
+  }
+
+  .lab-layered-mark {
+    min-height: 14rem;
   }
 }

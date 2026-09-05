@@ -1,12 +1,12 @@
 import { ImageResponse } from "next/og";
-import { TK_MARK_PATHS } from "./tk-mark";
+import { TK_MARK_PATHS, TK_MARK_VIEWBOX } from "./tk-mark";
 
 function Mark({ color, left, top }: { color: string; left: number; top: number }) {
 	return (
 		<svg
-			viewBox="0 0 280 220"
-			width="520"
-			height="409"
+			viewBox={TK_MARK_VIEWBOX}
+			width="590"
+			height="399"
 			style={{
 				fill: color,
 				left,
