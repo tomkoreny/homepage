@@ -9,6 +9,7 @@ export const metadata: Metadata = {
 
 const LAB_VIEWBOX = "0 0 360 250";
 const T_PATH = "M14 21 247 5l10 52-88 7 25 135-70 14L97 69l-73 7Z";
+const COMPACT_UPPER_K_PATH = "M145 108 262 20 307 55 178 136Z";
 
 type MarkVariant = {
 	name: string;
@@ -18,57 +19,57 @@ type MarkVariant = {
 
 const markVariants: MarkVariant[] = [
 	{
-		name: "00 / Accepted baseline",
-		note: "The current homepage mark. Short arms, broad overlap, compact footprint.",
-		paths: [
-			T_PATH,
-			"m145 108 86-59 43 34-96 53Z",
-			"m169 119 106 65-31 34-102-73Z",
-		],
-	},
-	{
-		name: "01 / Steeper cut",
-		note: "Long arms aimed harder toward the top-right and bottom-right corners.",
-		paths: [
-			T_PATH,
-			"M145 108 275 14 321 50 178 136Z",
-			"M169 119 322 202 289 240 142 145Z",
-		],
-	},
-	{
-		name: "02 / Square reach",
-		note: "Aligned outer reach and full-weight strokes create a squarer silhouette.",
-		paths: [
-			T_PATH,
-			"M145 108 279 20 324 55 178 136Z",
-			"M169 119 324 194 292 236 142 145Z",
-		],
-	},
-	{
-		name: "03 / Open joint",
-		note: "The diagonals separate sooner, leaving more air around the K junction.",
-		paths: [
-			T_PATH,
-			"M150 101 278 14 322 49 181 127Z",
-			"M181 139 323 201 291 240 149 159Z",
-		],
-	},
-	{
-		name: "04 / Offset K",
-		note: "Both K roots move right, creating a deliberate split from the T stem.",
-		paths: [
-			T_PATH,
-			"M184 104 283 22 324 54 190 132Z",
-			"M191 139 324 199 292 238 187 158Z",
-		],
-	},
-	{
 		name: "05 / Compact square",
-		note: "Moderate extra reach with steeper endpoints and the original shared roots.",
+		note: "The selected control. Every following mark keeps this T and upper K arm.",
 		paths: [
 			T_PATH,
-			"M145 108 262 20 307 55 178 136Z",
+			COMPACT_UPPER_K_PATH,
 			"M169 119 309 194 278 232 142 145Z",
+		],
+	},
+	{
+		name: "06 / Raised lower",
+		note: "The lower leg finishes higher, creating a flatter and more compact kick.",
+		paths: [
+			T_PATH,
+			COMPACT_UPPER_K_PATH,
+			"M169 119 314 171 287 215 142 145Z",
+		],
+	},
+	{
+		name: "07 / Dropped lower",
+		note: "The lower leg cuts sharply downward for the strongest diagonal tension.",
+		paths: [
+			T_PATH,
+			COMPACT_UPPER_K_PATH,
+			"M169 119 299 215 260 246 142 145Z",
+		],
+	},
+	{
+		name: "08 / Short lower",
+		note: "A shorter lower leg gives the K a tighter, less dominant footprint.",
+		paths: [
+			T_PATH,
+			COMPACT_UPPER_K_PATH,
+			"M169 119 280 179 251 217 142 145Z",
+		],
+	},
+	{
+		name: "09 / Extended lower",
+		note: "The lower leg reaches farther right while retaining the control angle.",
+		paths: [
+			T_PATH,
+			COMPACT_UPPER_K_PATH,
+			"M169 119 339 194 308 239 142 145Z",
+		],
+	},
+	{
+		name: "10 / Shifted root",
+		note: "Only the lower leg root moves down and right, opening the central junction.",
+		paths: [
+			T_PATH,
+			COMPACT_UPPER_K_PATH,
+			"M183 133 309 194 278 232 153 158Z",
 		],
 	},
 ];
@@ -126,8 +127,8 @@ export default function LogoLabPage() {
 				<Link href="/">← Homepage</Link>
 				<h1>TK mark lab</h1>
 				<p>
-					Every specimen uses the same canvas and unchanged T path, so its
-					scale stays fixed while only the K changes. The accepted baseline is
+					Variant 05 is the control. Every specimen keeps its T and upper K arm
+					fixed while only the lower leg moves. The accepted original remains
 					active on the homepage.
 				</p>
 			</header>
