@@ -1,12 +1,26 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { TK_MARK_PATHS, TK_MARK_VIEWBOX } from "./tk-mark";
+
+function loadFont(fileName: string) {
+	return readFile(join(process.cwd(), "src/app/fonts", fileName)).then(
+		(data) =>
+			data.buffer.slice(
+				data.byteOffset,
+				data.byteOffset + data.byteLength,
+			) as ArrayBuffer,
+	);
+}
+
+const headingFont = loadFont("bowlby-one-sc-regular.ttf");
 
 function Mark({ color, left, top }: { color: string; left: number; top: number }) {
 	return (
 		<svg
 			viewBox={TK_MARK_VIEWBOX}
-			width="594"
-			height="409"
+			width="520"
+			height="358"
 			style={{
 				fill: color,
 				left,
@@ -22,7 +36,9 @@ function Mark({ color, left, top }: { color: string; left: number; top: number }
 	);
 }
 
-export function createSocialImage() {
+export async function createSocialImage() {
+	const headingFontData = await headingFont;
+
 	return new ImageResponse(
 		<div
 			style={{
@@ -46,42 +62,27 @@ export function createSocialImage() {
 					width: "760px",
 				}}
 			/>
-			<Mark color="#ff5a1f" left={-29} top={88} />
-			<Mark color="#263cff" left={-42} top={76} />
+			<Mark color="#ff5a1f" left={32} top={113} />
+			<Mark color="#263cff" left={20} top={101} />
 			<div
 				style={{
 					display: "flex",
 					flexDirection: "column",
-					left: "410px",
+					left: "500px",
 					position: "absolute",
-					top: "155px",
-					width: "730px",
+					top: "170px",
+					width: "650px",
 				}}
 			>
 				<div
 					style={{
-						alignSelf: "flex-start",
-						background: "#090a0c",
-						color: "#e9edf2",
-						display: "flex",
-						fontSize: 22,
-						fontWeight: 800,
-						padding: "7px 12px",
-						transform: "rotate(-2deg)",
-					}}
-				>
-					tomkoreny.com
-				</div>
-				<div
-					style={{
 						display: "flex",
 						flexDirection: "column",
-						fontSize: 100,
+						fontFamily: "Bowlby One SC",
+						fontSize: 82,
 						fontWeight: 900,
-						letterSpacing: "-7px",
-						lineHeight: 0.8,
-						marginTop: "20px",
-						textTransform: "uppercase",
+						letterSpacing: "-4px",
+						lineHeight: 0.84,
 					}}
 				>
 					<span>Tom</span>
@@ -92,23 +93,23 @@ export function createSocialImage() {
 						background: "#ff5a1f",
 						display: "flex",
 						height: "12px",
-						marginTop: "28px",
+						marginTop: "30px",
 						transform: "skewX(-24deg)",
-						width: "430px",
+						width: "470px",
 					}}
 				/>
-				<div
-					style={{
-						display: "flex",
-						fontSize: 27,
-						fontWeight: 700,
-						marginTop: "24px",
-					}}
-				>
-					Software / infrastructure / electric rally
-				</div>
 			</div>
 		</div>,
-		{ width: 1200, height: 630 },
+		{
+			fonts: [
+				{
+					name: "Bowlby One SC",
+					data: headingFontData,
+					weight: 900,
+				},
+			],
+			width: 1200,
+			height: 630,
+		},
 	);
 }

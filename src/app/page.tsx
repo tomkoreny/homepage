@@ -203,25 +203,19 @@ export default function Home() {
 			<ThemeToggle />
 
 			<div className="blue-slash" aria-hidden="true" />
-			<div className="orange-stamp" aria-hidden="true">
-				PRG / CZ
-			</div>
 
 			<div className="punk-shell">
 				<header className="punk-hero">
 					<div className="mark-column">
 						<TkMark />
-						<p>Code / systems / electric rally</p>
 					</div>
 
 					<div className="name-block">
-						<p className="intro-line">Hello. I&apos;m</p>
 						<h1>
 							<span>Tom</span>
 							{" "}
 							<span>Korený</span>
 						</h1>
-						<span className="dot-com">.com</span>
 						<p className="role-line">
 							Software developer. DevOps engineer. Rally driver.
 						</p>
