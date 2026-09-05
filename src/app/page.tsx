@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
+import { profile } from "../profile";
 import { InternalLink } from "./internal-link";
 import { LinkCard } from "./link-card";
 import { ThemeToggle } from "./theme-toggle";
 import { TkMark } from "./tk-mark";
 
-const description =
-	"Software developer and DevOps engineer in Prague. Open-source enthusiast, self-hoster, and rally driver.";
+const description = `${profile.subtitle} ${profile.intro}`;
 
 export const metadata: Metadata = {
 	title: "Tom Korený — Software Developer & DevOps Engineer",
 	description,
-	alternates: { canonical: "/" },
+	alternates: {
+		canonical: "/",
+		types: {
+			"text/plain": "/about.txt",
+			"application/json": "/about.json",
+		},
+	},
 	openGraph: {
 		title: "Tom Korený — Software Developer & DevOps Engineer",
 		description,
@@ -46,101 +52,7 @@ export const metadata: Metadata = {
 	},
 };
 
-const primaryLinks = [
-	{
-		label: "CV",
-		description: "Experience, roles, and the useful details",
-		href: "https://cv.tomkoreny.com/tom/tom-koreny-cv",
-		className: "primary-cv",
-	},
-	{
-		label: "Blog",
-		description: "Things worth writing down",
-		href: "https://blog.tomkoreny.com",
-		className: "primary-blog",
-	},
-	{
-		label: "GitHub",
-		description: "Public code and open-source work",
-		href: "https://github.com/tomkoreny",
-		className: "primary-github",
-	},
-	{
-		label: "Email",
-		description: "tom@tomkoreny.com",
-		href: "mailto:tom@tomkoreny.com",
-		className: "primary-email",
-	},
-];
-
-const linkGroups = [
-	{
-		title: "Social",
-		links: [
-			{ label: "Instagram", href: "https://instagram.com/tomkoreny" },
-			{ label: "Facebook", href: "https://facebook.com/puma2254" },
-			{ label: "X / Twitter", href: "https://x.com/tomkoreny" },
-			{ label: "LinkedIn", href: "https://linkedin.com/in/tomkoreny" },
-		],
-	},
-	{
-		title: "Communities",
-		links: [
-			{
-				label: "Mastodon",
-				href: "https://mstdn.tomkoreny.com/@tom",
-				rel: "me",
-			},
-			{ label: "Lemmy", href: "https://lemmy.tomkoreny.com/u/tom" },
-			{
-				label: "Discord",
-				href: "https://discordapp.com/users/213647399812464640",
-			},
-			{ label: "Steam", href: "https://steamcommunity.com/id/puma2254" },
-		],
-	},
-	{
-		title: "Self-hosted",
-		links: [
-			{ label: "Git", href: "https://git.tomkoreny.com" },
-			{ label: "Matrix", href: "https://matrix.to/#/@tom:tomkoreny.com" },
-		],
-	},
-];
-
-const techStack = [
-	"TypeScript",
-	"Python",
-	"Go",
-	"Ruby",
-	"Nix",
-	"React",
-	"Next.js",
-	"Vue",
-	"Angular",
-	"Node.js",
-	"NestJS",
-	"Fastify",
-	"FastAPI",
-	"LVGL",
-	"Docker",
-	"Kubernetes",
-	"Proxmox",
-	"NixOS",
-	"Terraform",
-	"PostgreSQL",
-	"Grafana",
-	"Prometheus",
-	"Loki",
-	"Tailscale",
-	"Traefik",
-	"Git",
-	"CI/CD",
-	"ArgoCD",
-	"Linux",
-];
-
-const siteUrl = "https://www.tomkoreny.com";
+const siteUrl = profile.canonicalUrl;
 const personId = `${siteUrl}/#person`;
 const websiteId = `${siteUrl}/#website`;
 
@@ -150,8 +62,8 @@ const structuredData = {
 		{
 			"@type": "WebSite",
 			"@id": websiteId,
-			url: siteUrl,
-			name: "Tom Korený",
+			url: profile.canonicalUrl,
+			name: profile.name,
 			description,
 			inLanguage: "en",
 			author: { "@id": personId },
@@ -159,33 +71,18 @@ const structuredData = {
 		{
 			"@type": "Person",
 			"@id": personId,
-			name: "Tom Korený",
-			url: siteUrl,
+			name: profile.name,
+			url: profile.canonicalUrl,
 			description,
 			jobTitle: "Software Developer and DevOps Engineer",
 			homeLocation: {
 				"@type": "Place",
 				name: "Prague, Czech Republic",
 			},
-			knowsAbout: [
-				"Software development",
-				"DevOps",
-				"Open source software",
-				"Self-hosting",
-				"NixOS",
-				"Kubernetes",
-				"TypeScript",
-				"Linux",
-			],
-			sameAs: [
-				"https://github.com/tomkoreny",
-				"https://linkedin.com/in/tomkoreny",
-				"https://mstdn.tomkoreny.com/@tom",
-				"https://lemmy.tomkoreny.com/u/tom",
-				"https://instagram.com/tomkoreny",
-				"https://facebook.com/puma2254",
-				"https://x.com/tomkoreny",
-			],
+			knowsAbout: profile.tools,
+			sameAs: profile.linkGroups.flatMap((group) =>
+				group.links.map((link) => link.href),
+			),
 			mainEntityOfPage: { "@id": websiteId },
 		},
 	],
@@ -216,14 +113,8 @@ export default function Home() {
 							{" "}
 							<span>Korený</span>
 						</h1>
-						<p className="role-line">
-							Software developer. DevOps engineer. Rally driver.
-						</p>
-						<p className="hero-copy">
-							I write code, automate everything, and keep infrastructure alive.
-							 On weekends, I trade terminals for electric rally stages. Open
-							 source and self-hosting usually connect the two.
-						</p>
+						<p className="role-line">{profile.subtitle}</p>
+						<p className="hero-copy">{profile.intro}</p>
 					</div>
 				</header>
 
@@ -232,10 +123,10 @@ export default function Home() {
 						Main destinations
 					</h2>
 					<div className="primary-links-grid">
-						{primaryLinks.map((link) => (
+						{profile.primaryLinks.map((link) => (
 							<LinkCard
 								key={link.label}
-								className={link.className}
+								className={`primary-${link.id}`}
 								description={link.description}
 								href={link.href}
 								label={link.label}
@@ -250,7 +141,7 @@ export default function Home() {
 				<section className="wire-section" aria-labelledby="on-the-wire">
 					<h2 id="on-the-wire">On the wire</h2>
 					<div className="wire-groups">
-						{linkGroups.map((group) => (
+						{profile.linkGroups.map((group) => (
 							<section className="wire-group" key={group.title}>
 								<h3>{group.title}</h3>
 								<div className="wire-links">
@@ -270,16 +161,30 @@ export default function Home() {
 				</section>
 
 				<section className="toolbox-section" aria-labelledby="toolbox">
-					<h2 id="toolbox">The current pile</h2>
-					<ul aria-label="Technology stack">
-						{techStack.map((tech) => (
-							<li key={tech}>{tech}</li>
+					<h2 id="toolbox">Tools of the trade</h2>
+					<ul aria-label="Tools of the trade">
+						{profile.tools.map((tool) => (
+							<li key={tool}>{tool}</li>
 						))}
 					</ul>
 				</section>
 
 				<footer>
-					<p>Tom Korený · {new Date().getFullYear()}</p>
+					<div className="footer-identity">
+						<p>{profile.name} · {new Date().getFullYear()}</p>
+						<p className="commercial-details">
+							<a
+								className="footer-link"
+								href={profile.business.aresUrl}
+								rel="noopener noreferrer"
+								target="_blank"
+							>
+								IČO {profile.business.ico}
+							</a>
+							<span aria-hidden="true"> · </span>
+							<span>DIČ {profile.business.dic}</span>
+						</p>
+					</div>
 					<InternalLink className="footer-link" href="/privacy">
 						Privacy
 					</InternalLink>

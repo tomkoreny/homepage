@@ -256,7 +256,7 @@ body {
   transform: rotate(1deg);
 }
 
-.primary-github {
+.primary-git {
   grid-column: 2 / span 7;
   border-color: var(--blue);
   color: var(--blue);
@@ -309,8 +309,8 @@ body {
 
 .wire-groups {
   display: grid;
-  grid-template-columns: 1fr 1fr 0.72fr;
-  gap: clamp(2rem, 5vw, 5rem);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 3.5rem);
   align-items: start;
 }
 
@@ -464,6 +464,16 @@ footer p {
   margin: 0;
 }
 
+.footer-identity {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+}
+
+.commercial-details {
+  font-variant-numeric: tabular-nums;
+}
+
 .footer-link {
   color: inherit;
   text-decoration-thickness: 0.15rem;
@@ -513,9 +523,6 @@ footer p {
     grid-template-columns: 1fr 1fr;
   }
 
-  .wire-group:last-child {
-    grid-column: 1 / -1;
-  }
 }
 
 @media (max-width: 700px) {
@@ -575,7 +582,7 @@ footer p {
 
   .primary-cv,
   .primary-blog,
-  .primary-github,
+  .primary-git,
   .primary-email {
     grid-column: auto;
     margin-top: 0;
@@ -603,9 +610,15 @@ footer p {
     gap: 2.8rem;
   }
 
-  .wire-group:last-child {
-    grid-column: auto;
+  footer {
+    align-items: flex-start;
+    gap: 1rem;
   }
+
+  .footer-identity {
+    flex-direction: column;
+  }
+
 
   .punk-link-wire {
     font-size: 1.35rem;

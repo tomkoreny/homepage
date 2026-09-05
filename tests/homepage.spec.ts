@@ -46,6 +46,12 @@ test("renders the homepage, metadata, links, and analytics under CSP", async ({
 		"href",
 		/^https:\/\/www\.tomkoreny\.com\/?$/,
 	);
+	await expect(
+		page.locator('link[rel="alternate"][type="text/plain"]'),
+	).toHaveAttribute("href", "https://www.tomkoreny.com/about.txt");
+	await expect(
+		page.locator('link[rel="alternate"][type="application/json"]'),
+	).toHaveAttribute("href", "https://www.tomkoreny.com/about.json");
 	await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
 		"content",
 		/opengraph-image/,
@@ -73,6 +79,37 @@ test("renders the homepage, metadata, links, and analytics under CSP", async ({
 		mainEntityOfPage: { "@id": "https://www.tomkoreny.com/#website" },
 	});
 	expect(person.sameAs).toContain("https://github.com/tomkoreny");
+	await expect(
+		page.getByText(
+			"AI wrangler. Infrastructure keeper. Car, animal, and camera enthusiast.",
+			{ exact: true },
+		),
+	).toBeVisible();
+	await expect(
+		page.getByText(
+			"I write code, automate everything, and keep infrastructure alive. The hobby backlog is less manageable. Come along for the ride.",
+			{ exact: true },
+		),
+	).toBeVisible();
+	await expect(page.locator('a[href="https://git.tomkoreny.com"]')).toContainText(
+		"Source code, served from home.",
+	);
+	await expect(
+		page.locator('a[href="https://github.com/tomkoreny"]'),
+	).toContainText("GitHub");
+	await expect(
+		page.getByRole("heading", { name: "Tools of the trade" }),
+	).toBeVisible();
+	await expect(
+		page.getByRole("link", { name: "IČO 09729852" }),
+	).toHaveAttribute(
+		"href",
+		"https://ares.gov.cz/ekonomicke-subjekty/res/09729852",
+	);
+	await expect(page.getByText("DIČ CZ9910135730", { exact: true })).toBeVisible();
+	await expect(
+		page.getByRole("link", { name: /Reddit|Twitch/ }),
+	).toHaveCount(0);
 
 	const externalLinks = page.locator('a[target="_blank"]');
 	for (const link of await externalLinks.all()) {
@@ -171,7 +208,7 @@ test("has no detectable WCAG A or AA violations in either theme", async ({
 	expect(darkResults.violations).toEqual([]);
 });
 
-test("reflows at 320px and honors reduced motion", async ({ page }) => {
+test("reflows at 320px", async ({ page }) => {
 	await page.setViewportSize({ width: 320, height: 800 });
 	await page.goto("/");
 
@@ -180,10 +217,65 @@ test("reflows at 320px and honors reduced motion", async ({ page }) => {
 		viewport: document.documentElement.clientWidth,
 	}));
 	expect(dimensions.body).toBeLessThanOrEqual(dimensions.viewport);
-	await expect(page.locator(".marquee-track")).toHaveCSS(
-		"animation-name",
-		"none",
-	);
+});
+
+test("serves explicit and negotiated terminal profiles", async ({ request }) => {
+	const plain = await request.get("/about.txt");
+	const plainBody = await plain.text();
+	expect(plain.headers()["content-type"]).toContain("text/plain");
+	expect(plainBody).toContain("TK / TOM KORENÝ");
+	expect(plainBody).toContain("Source code, served from home.");
+	expect(plainBody).not.toContain("\u001b[");
+
+	const ansi = await request.get("/about.txt?ansi=1");
+	const ansiBody = await ansi.text();
+	expect(ansiBody).toContain("\u001b[38;2;38;60;255m");
+	expect(ansiBody).toContain("████████╗");
+
+	const json = await request.get("/about.json");
+	expect(json.headers()["content-type"]).toContain("application/json");
+	expect(await json.json()).toMatchObject({
+		schemaVersion: 1,
+		type: "Person",
+		identity: {
+			name: "Tom Korený",
+			legalName: "Tomáš Korený",
+		},
+		business: {
+			ico: "09729852",
+			dic: "CZ9910135730",
+		},
+	});
+
+	for (const userAgent of [
+		"curl/8.12.1",
+		"Wget/1.25.0",
+		"HTTPie/3.2.4",
+		"xh/0.24.1",
+	]) {
+		const response = await request.get("/", {
+			headers: { accept: "*/*", "user-agent": userAgent },
+		});
+		expect(response.headers()["content-type"]).toContain("text/plain");
+		expect(await response.text()).toContain("TK / TOM KORENÝ");
+	}
+
+	const explicitHtml = await request.get("/", {
+		headers: { accept: "text/html", "user-agent": "curl/8.12.1" },
+	});
+	expect(explicitHtml.headers()["content-type"]).toContain("text/html");
+	expect(await explicitHtml.text()).toContain("<!DOCTYPE html>");
+
+	const explicitJson = await request.get("/", {
+		headers: {
+			accept: "text/plain;q=0.5, application/json;q=1",
+			"user-agent": "curl/8.12.1",
+		},
+	});
+	expect(explicitJson.headers()["content-type"]).toContain("application/json");
+	expect(explicitJson.headers().vary).toContain("Accept");
+	expect(explicitJson.headers().vary).toContain("User-Agent");
+	expect((await explicitJson.json()).identity.name).toBe("Tom Korený");
 });
 
 test("publishes crawler discovery files and canonicalizes the host", async ({

@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
+import { profile } from "../profile";
 import { TK_MARK_PATHS, TK_MARK_VIEWBOX } from "./tk-mark";
 
 function asArrayBuffer(data: Uint8Array) {
@@ -112,7 +113,7 @@ export async function createSocialImage() {
 						marginTop: "25px",
 					}}
 				>
-					Software developer. DevOps engineer. Rally driver.
+					{profile.subtitle}
 				</div>
 			</div>
 		</div>,

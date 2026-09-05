@@ -35,6 +35,9 @@ GitHub Actions runs the complete validation suite for pushes and pull requests.
 ## Architecture
 
 - `src/app/page.tsx` — server-rendered homepage content
+- `src/profile.ts` — shared identity, links, business details, and text/JSON renderers
+- `src/app/about.txt` and `about.json` — explicit machine-readable profile routes
+- `src/proxy.ts` — root content negotiation for browsers and terminal HTTP clients
 - `src/app/theme-toggle.tsx` — the only interactive client component
 - `src/app/layout.tsx` — metadata, self-hosted heading font, theme initialization, and analytics
 - `src/app/privacy/page.tsx` — analytics and local-storage disclosure
