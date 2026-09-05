@@ -217,6 +217,14 @@ test("reflows at 320px", async ({ page }) => {
 		viewport: document.documentElement.clientWidth,
 	}));
 	expect(dimensions.body).toBeLessThanOrEqual(dimensions.viewport);
+
+	const footer = page.locator("footer");
+	await footer.scrollIntoViewIfNeeded();
+	await expect(footer).toBeInViewport();
+	await expect(
+		footer.getByRole("link", { name: "IČO 09729852" }),
+	).toBeVisible();
+	await expect(footer.getByRole("link", { name: "Privacy" })).toBeVisible();
 });
 
 test("serves explicit and negotiated terminal profiles", async ({ request }) => {
