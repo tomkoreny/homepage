@@ -308,6 +308,18 @@ test("serves explicit and negotiated terminal profiles", async ({ request }) => 
 		expect(await response.text()).toContain("TK / TOM KORENÝ");
 	}
 
+	const apexTerminal = await request.get("/", {
+		headers: {
+			accept: "*/*",
+			host: "tomkoreny.com",
+			"user-agent": "curl/8.12.1",
+		},
+		maxRedirects: 0,
+	});
+	expect(apexTerminal.status()).toBe(200);
+	expect(apexTerminal.headers()["content-type"]).toContain("text/plain");
+	expect(await apexTerminal.text()).toContain("TK / TOM KORENÝ");
+
 	const explicitHtml = await request.get("/", {
 		headers: { accept: "text/html", "user-agent": "curl/8.12.1" },
 	});

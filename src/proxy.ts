@@ -67,6 +67,17 @@ export function proxy(request: NextRequest) {
 		return createTextProfileResponse({ ansi, vary: true });
 	}
 
+	if (
+		request.headers.get("host")?.replace(/:\d+$/, "").toLowerCase() ===
+		"tomkoreny.com"
+	) {
+		const canonicalUrl = request.nextUrl.clone();
+		canonicalUrl.protocol = "https:";
+		canonicalUrl.hostname = "www.tomkoreny.com";
+		canonicalUrl.port = "";
+		return NextResponse.redirect(canonicalUrl, 308);
+	}
+
 	const response = NextResponse.next();
 	response.headers.set("Vary", "Accept, User-Agent");
 	return response;
