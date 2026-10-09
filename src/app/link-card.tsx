@@ -1,19 +1,19 @@
-import type { ReactNode } from "react";
-
 type LinkCardProps = {
-	accent: boolean;
+	className?: string;
+	description?: string;
 	href: string;
-	icon: ReactNode;
 	label: string;
 	relationship?: string;
+	variant: "primary" | "wire";
 };
 
 export function LinkCard({
-	accent,
+	className = "",
+	description,
 	href,
-	icon,
 	label,
 	relationship,
+	variant,
 }: LinkCardProps) {
 	const opensInNewTab = href.startsWith("http");
 	const rel = opensInNewTab
@@ -25,20 +25,13 @@ export function LinkCard({
 			href={href}
 			target={opensInNewTab ? "_blank" : undefined}
 			rel={rel}
-			className={`neo-link ${accent ? "neo-link-accent" : ""}`}
+			className={`punk-link punk-link-${variant} ${className}`.trim()}
 		>
-			<span aria-hidden="true" className="flex w-8 justify-center">
-				{icon}
-			</span>
-			<span>
-				{label}
-				{opensInNewTab && (
-					<span className="sr-only"> (opens in a new tab)</span>
-				)}
-			</span>
-			<span aria-hidden="true" className="ml-auto font-mono text-xs text-fg/65">
-				→
-			</span>
+			<strong>{label}</strong>
+			{description && <small>{description}</small>}
+			{opensInNewTab && (
+				<span className="sr-only"> (opens in a new tab)</span>
+			)}
 		</a>
 	);
 }

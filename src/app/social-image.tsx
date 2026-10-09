@@ -1,57 +1,137 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
+import { profile } from "../profile";
+import { TK_MARK_PATHS, TK_MARK_VIEWBOX } from "./tk-mark";
 
-export function createSocialImage() {
+function asArrayBuffer(data: Uint8Array) {
+	return data.buffer.slice(
+		data.byteOffset,
+		data.byteOffset + data.byteLength,
+	) as ArrayBuffer;
+}
+
+const headingFont = readFile(
+	join(process.cwd(), "public/fonts/bowlby-one-sc-regular.ttf"),
+).then(asArrayBuffer);
+const bodyFont = readFile(
+	join(process.cwd(), "public/fonts/liberation-sans-regular.ttf"),
+).then(asArrayBuffer);
+function Mark({ color, left, top }: { color: string; left: number; top: number }) {
+	return (
+		<svg
+			viewBox={TK_MARK_VIEWBOX}
+			width="520"
+			height="358"
+			style={{
+				fill: color,
+				left,
+				position: "absolute",
+				top,
+				transform: "rotate(-7deg)",
+			}}
+		>
+			{TK_MARK_PATHS.map((path) => (
+				<path d={path} fill={color} key={path} />
+			))}
+		</svg>
+	);
+}
+
+export async function createSocialImage() {
+	const [bodyFontData, headingFontData] = await Promise.all([
+		bodyFont,
+		headingFont,
+	]);
+
 	return new ImageResponse(
 		<div
 			style={{
-				alignItems: "center",
-				background: "#e8e4df",
-				color: "#1a1a2e",
+				background: "#e9edf2",
+				color: "#090a0c",
 				display: "flex",
+				fontFamily: "Body",
 				height: "100%",
-				justifyContent: "center",
-				padding: "64px",
+				overflow: "hidden",
+				position: "relative",
 				width: "100%",
 			}}
 		>
 			<div
 				style={{
-					background: "#ffffff",
-					border: "8px solid #1a1a2e",
-					boxShadow: "18px 18px 0 #1a1a2e",
+					background: "#263cff",
+					height: "170px",
+					position: "absolute",
+					right: "-90px",
+					top: "18px",
+					transform: "rotate(-9deg)",
+					width: "760px",
+				}}
+			/>
+			<Mark color="#ff5a1f" left={32} top={113} />
+			<Mark color="#263cff" left={20} top={101} />
+			<div
+				style={{
 					display: "flex",
 					flexDirection: "column",
-					gap: "22px",
-					padding: "54px 64px",
-					width: "100%",
+					left: "500px",
+					position: "absolute",
+					top: "170px",
+					width: "650px",
 				}}
 			>
 				<div
 					style={{
-						color: "#e34d0f",
 						display: "flex",
-						fontSize: 92,
-						fontWeight: 900,
+						flexDirection: "column",
+						fontFamily: "Heading",
+						fontSize: 82,
+						fontWeight: 400,
 						letterSpacing: "-4px",
+						lineHeight: 0.84,
 					}}
 				>
-					TOM KORENÝ
-				</div>
-				<div style={{ display: "flex", fontSize: 34, fontWeight: 700 }}>
-					Software Developer · DevOps Engineer · Rally Driver
+					<span>Tom</span>
+					<span>Korený</span>
 				</div>
 				<div
 					style={{
-						color: "#2438db",
+						background: "#ff5a1f",
 						display: "flex",
-						fontSize: 27,
-						fontWeight: 700,
+						height: "12px",
+						marginTop: "30px",
+						transform: "skewX(-24deg)",
+						width: "470px",
+					}}
+				/>
+				<div
+					style={{
+						display: "flex",
+						fontFamily: "Body",
+						fontSize: 25,
+						fontWeight: 400,
+						marginTop: "25px",
 					}}
 				>
-					tomkoreny.com
+					{profile.subtitle}
 				</div>
 			</div>
 		</div>,
-		{ width: 1200, height: 630 },
+		{
+			fonts: [
+				{
+					name: "Body",
+					data: bodyFontData,
+					weight: 400,
+				},
+				{
+					name: "Heading",
+					data: headingFontData,
+					weight: 400,
+				},
+			],
+			width: 1200,
+			height: 630,
+		},
 	);
 }

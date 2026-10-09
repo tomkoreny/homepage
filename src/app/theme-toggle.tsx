@@ -60,7 +60,7 @@ export function ThemeToggle() {
 		<button
 			type="button"
 			onClick={toggleTheme}
-			className="theme-toggle neo-card fixed right-5 top-5 z-50 cursor-pointer p-2.5"
+			className="theme-toggle"
 			aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}
 			aria-pressed={dark}
 		>

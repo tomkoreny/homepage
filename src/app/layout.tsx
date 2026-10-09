@@ -1,13 +1,19 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Bowlby_One_SC } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const heading = Bowlby_One_SC({
-	weight: "400",
-	subsets: ["latin"],
+const heading = localFont({
+	src: "../../public/fonts/bowlby-one-sc-regular.ttf",
 	variable: "--font-heading",
 	display: "swap",
+	weight: "400",
+});
+const body = localFont({
+	src: "../../public/fonts/liberation-sans-regular.ttf",
+	variable: "--font-body",
+	display: "swap",
+	weight: "400",
 });
 
 const siteUrl = new URL("https://www.tomkoreny.com");
@@ -33,10 +39,10 @@ export const metadata: Metadata = {
 	creator: "Tom Korený",
 	icons: {
 		icon: [
-			{ url: "/favicon.svg", type: "image/svg+xml" },
-			{ url: "/favicon.ico", sizes: "any" },
+			{ url: "/favicon.svg?v=tk-mark-1", type: "image/svg+xml" },
+			{ url: "/favicon.ico?v=tk-mark-1", sizes: "any" },
 		],
-		apple: "/apple-touch-icon.png",
+		apple: "/apple-touch-icon.png?v=tk-mark-1",
 	},
 };
 
@@ -54,7 +60,11 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en" className={heading.variable} suppressHydrationWarning>
+		<html
+			lang="en"
+			className={`${heading.variable} ${body.variable}`}
+			suppressHydrationWarning
+		>
 			<body className="antialiased">
 				<Script id="theme-init" strategy="beforeInteractive">
 					{themeInitScript}
