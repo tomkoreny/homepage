@@ -5,7 +5,7 @@ import { LinkCard } from "./link-card";
 import { ThemeToggle } from "./theme-toggle";
 import { TkMark } from "./tk-mark";
 
-const description = `${profile.subtitle} ${profile.intro}`;
+const { description } = profile;
 
 export const dynamic = "force-dynamic";
 

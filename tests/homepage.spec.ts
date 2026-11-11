@@ -91,9 +91,9 @@ test("renders the homepage, metadata, links, and analytics under CSP", async ({
 			{ exact: true },
 		),
 	).toBeVisible();
-	await expect(page.locator('a[href="https://git.tomkoreny.com"]')).toContainText(
-		"Source code, served from home.",
-	);
+	await expect(
+		page.locator('a[href="https://git.tomkoreny.com/tomkoreny"]'),
+	).toContainText("Source code, served from home.");
 	await expect(
 		page.locator('a[href="https://github.com/tomkoreny"]'),
 	).toContainText("GitHub");

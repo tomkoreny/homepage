@@ -10,14 +10,18 @@ export type ProfileLinkGroup = {
 	links: readonly ProfileLink[];
 };
 
+const subtitle =
+	"AI wrangler. Infrastructure keeper. Car, animal, and camera enthusiast.";
+const pitch = "I write code, automate everything, and keep infrastructure alive.";
+
 export const profile = {
 	canonicalUrl: "https://www.tomkoreny.com",
 	name: "Tom Korený",
 	legalName: "Tomáš Korený",
-	subtitle:
-		"AI wrangler. Infrastructure keeper. Car, animal, and camera enthusiast.",
-	intro:
-		"I write code, automate everything, and keep infrastructure alive. The hobby backlog is less manageable. Come along for the ride.",
+	subtitle,
+	intro: `${pitch} The hobby backlog is less manageable. Come along for the ride.`,
+	// Search and social snippet. Keep it under 160 characters.
+	description: `${subtitle} ${pitch}`,
 	primaryLinks: [
 		{
 			id: "cv",
@@ -29,7 +33,7 @@ export const profile = {
 			id: "git",
 			label: "Git",
 			description: "Source code, served from home.",
-			href: "https://git.tomkoreny.com",
+			href: "https://git.tomkoreny.com/tomkoreny",
 		},
 		{
 			id: "email",
@@ -64,7 +68,7 @@ export const profile = {
 			links: [
 				{
 					label: "Discord",
-					href: "https://discordapp.com/users/213647399812464640",
+					href: "https://discord.com/users/213647399812464640",
 				},
 				{ label: "Steam", href: "https://steamcommunity.com/id/puma2254" },
 			],

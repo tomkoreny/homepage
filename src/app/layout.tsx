@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import localFont from "next/font/local";
+import { profile } from "../profile";
 import "./globals.css";
 
 const heading = localFont({
@@ -17,8 +18,7 @@ const body = localFont({
 });
 
 const siteUrl = new URL("https://www.tomkoreny.com");
-const description =
-	"Software developer and DevOps engineer in Prague. Open-source enthusiast, self-hoster, and rally driver.";
+const { description } = profile;
 
 export const metadata: Metadata = {
 	metadataBase: siteUrl,
