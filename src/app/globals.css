@@ -242,22 +242,15 @@ body {
 }
 
 .primary-cv {
-  grid-column: 1 / span 4;
+  grid-column: 1 / span 3;
   background: var(--ink);
   color: var(--paper);
   transform: rotate(-2deg);
 }
 
-.primary-blog {
-  grid-column: 5 / span 8;
-  margin-top: 2.2rem;
-  background: var(--blue);
-  color: #f4f6ff;
-  transform: rotate(1deg);
-}
-
 .primary-git {
-  grid-column: 2 / span 7;
+  grid-column: 4 / span 5;
+  margin-top: 2.2rem;
   border-color: var(--blue);
   color: var(--blue);
   transform: rotate(1.5deg);
@@ -265,7 +258,7 @@ body {
 
 .primary-email {
   grid-column: 9 / span 4;
-  margin-top: -1.5rem;
+  margin-top: 0.6rem;
   background: var(--orange);
   color: #090a0c;
   transform: rotate(-2.5deg);
@@ -581,11 +574,15 @@ footer p {
   }
 
   .primary-cv,
-  .primary-blog,
-  .primary-git,
-  .primary-email {
+  .primary-git {
     grid-column: auto;
     margin-top: 0;
+  }
+
+  .primary-email {
+    grid-column: 1 / -1;
+    margin-top: 0;
+    transform: rotate(-1.5deg);
   }
 
   .punk-link-primary {

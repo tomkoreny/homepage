@@ -26,12 +26,6 @@ export const profile = {
 			href: "https://cv.tomkoreny.com/tom/tom-koreny-cv",
 		},
 		{
-			id: "blog",
-			label: "Blog",
-			description: "Things worth writing down",
-			href: "https://blog.tomkoreny.com",
-		},
-		{
 			id: "git",
 			label: "Git",
 			description: "Source code, served from home.",
@@ -68,7 +62,6 @@ export const profile = {
 		{
 			title: "Communities",
 			links: [
-				{ label: "Lemmy", href: "https://lemmy.tomkoreny.com/u/tom" },
 				{
 					label: "Discord",
 					href: "https://discordapp.com/users/213647399812464640",
