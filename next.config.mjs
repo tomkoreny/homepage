@@ -27,12 +27,16 @@ const securityHeaders = [
 	},
 	{
 		key: "Strict-Transport-Security",
-		value: "max-age=63072000; includeSubDomains; preload",
+		value: "max-age=63072000; includeSubDomains",
 	},
 ];
 
 const nextConfig = {
 	output: "standalone",
+	poweredByHeader: false,
+	// Nothing uses next/image, so the optimizer endpoint only adds attack
+	// surface. With this set, /_next/image answers 404.
+	images: { unoptimized: true },
 	async headers() {
 		return [
 			{
