@@ -4,17 +4,20 @@ import localFont from "next/font/local";
 import { profile } from "../profile";
 import "./globals.css";
 
+// WOFF2 subsets of the TTF sources in public/fonts. README has the command.
 const heading = localFont({
-	src: "../../public/fonts/bowlby-one-sc-regular.ttf",
+	src: "./fonts/bowlby-one-sc-regular.woff2",
 	variable: "--font-heading",
 	display: "swap",
 	weight: "400",
 });
 const body = localFont({
-	src: "../../public/fonts/liberation-sans-regular.ttf",
+	src: [
+		{ path: "./fonts/liberation-sans-regular.woff2", weight: "400" },
+		{ path: "./fonts/liberation-sans-bold.woff2", weight: "700" },
+	],
 	variable: "--font-body",
 	display: "swap",
-	weight: "400",
 });
 
 const siteUrl = new URL("https://www.tomkoreny.com");
