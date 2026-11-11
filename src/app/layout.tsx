@@ -49,13 +49,20 @@ export const metadata: Metadata = {
 	},
 };
 
-const themeInitScript = `
+// Inline so it runs while the document is parsed. next/script queues
+// "beforeInteractive" code until the Next.js runtime loads, which is after
+// first paint on a slow connection and flashes the wrong theme.
+const themeInitScript = `(() => {
   try {
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    document.documentElement.classList.toggle('dark', savedTheme === 'dark' || (!savedTheme && prefersDark));
+    const saved = localStorage.getItem('theme');
+    const dark = saved === 'dark' || (!saved && matchMedia('(prefers-color-scheme: dark)').matches);
+    document.documentElement.classList.toggle('dark', dark);
   } catch {}
-`;
+  const meta = document.createElement('meta');
+  meta.name = 'theme-color';
+  meta.content = getComputedStyle(document.documentElement).getPropertyValue('--paper').trim();
+  document.head.append(meta);
+})();`;
 
 export default function RootLayout({
 	children,
@@ -69,9 +76,7 @@ export default function RootLayout({
 			suppressHydrationWarning
 		>
 			<body className="antialiased">
-				<Script id="theme-init" strategy="beforeInteractive">
-					{themeInitScript}
-				</Script>
+				<script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
 				{children}
 				<Script
 					src="https://analytics.tomkoreny.com/api/script.js"

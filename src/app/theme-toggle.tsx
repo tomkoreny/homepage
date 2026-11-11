@@ -52,8 +52,16 @@ export function ThemeToggle() {
 	);
 
 	const toggleTheme = () => {
-		const isDark = document.documentElement.classList.toggle("dark");
+		const root = document.documentElement;
+		const isDark = root.classList.toggle("dark");
 		localStorage.setItem("theme", isDark ? "dark" : "light");
+		// The layout's init script creates this tag; keep it on the page colour.
+		document
+			.querySelector('meta[name="theme-color"]')
+			?.setAttribute(
+				"content",
+				getComputedStyle(root).getPropertyValue("--paper").trim(),
+			);
 	};
 
 	return (
@@ -62,7 +70,6 @@ export function ThemeToggle() {
 			onClick={toggleTheme}
 			className="theme-toggle"
 			aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}
-			aria-pressed={dark}
 		>
 			<span className="theme-icon theme-icon-moon" aria-hidden="true">
 				{moonIcon}

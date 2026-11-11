@@ -92,84 +92,90 @@ const structuredData = {
 
 export default function Home() {
 	return (
-		<main className="punk-page">
+		<div className="punk-page">
 			<script
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{
 					__html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
 				}}
 			/>
-			<ThemeToggle />
 
 			<div className="blue-slash" aria-hidden="true" />
 
 			<div className="punk-shell">
-				<header className="punk-hero">
-					<div className="mark-column">
-						<TkMark />
-					</div>
+				<main>
+					<ThemeToggle />
 
-					<div className="name-block">
-						<h1>
-							<span>Tom</span>
-							{" "}
-							<span>Korený</span>
-						</h1>
-						<p className="role-line">{profile.subtitle}</p>
-						<p className="hero-copy">{profile.intro}</p>
-					</div>
-				</header>
+					<header className="punk-hero">
+						<div className="mark-column">
+							<TkMark />
+						</div>
 
-				<section className="primary-section" aria-labelledby="main-destinations">
-					<h2 id="main-destinations" className="sr-only">
-						Main destinations
-					</h2>
-					<div className="primary-links-grid">
-						{profile.primaryLinks.map((link) => (
-							<LinkCard
-								key={link.label}
-								className={`primary-${link.id}`}
-								description={link.description}
-								href={link.href}
-								label={link.label}
-								variant="primary"
-							/>
-						))}
-					</div>
-				</section>
+						<div className="name-block">
+							<h1>
+								<span>Tom</span>
+								{" "}
+								<span>Korený</span>
+							</h1>
+							<p className="role-line">{profile.subtitle}</p>
+							<p className="hero-copy">{profile.intro}</p>
+						</div>
+					</header>
 
-				<div className="torn-rule" aria-hidden="true" />
+					<section
+						className="primary-section"
+						aria-labelledby="main-destinations"
+					>
+						<h2 id="main-destinations" className="sr-only">
+							Main destinations
+						</h2>
+						<div className="primary-links-grid">
+							{profile.primaryLinks.map((link) => (
+								<LinkCard
+									key={link.label}
+									className={`primary-${link.id}`}
+									description={link.description}
+									href={link.href}
+									label={link.label}
+									variant="primary"
+								/>
+							))}
+						</div>
+					</section>
 
-				<section className="wire-section" aria-labelledby="on-the-wire">
-					<h2 id="on-the-wire">On the wire</h2>
-					<div className="wire-groups">
-						{profile.linkGroups.map((group) => (
-							<section className="wire-group" key={group.title}>
-								<h3>{group.title}</h3>
-								<div className="wire-links">
-									{group.links.map((link) => (
-										<LinkCard
-											key={link.label}
-											href={link.href}
-											label={link.label}
-											relationship={"rel" in link ? link.rel : undefined}
-											variant="wire"
-										/>
-									))}
-								</div>
-							</section>
-						))}
-					</div>
-				</section>
+					<div className="torn-rule" aria-hidden="true" />
 
-				<section className="toolbox-section" aria-labelledby="toolbox">
-					<h2 id="toolbox">Tools of the trade</h2>
-					<ul aria-label="Tools of the trade">
-						{profile.tools.map((tool) => (
-							<li key={tool}>{tool}</li>
-						))}
-					</ul>
-				</section>
+					<section className="wire-section" aria-labelledby="on-the-wire">
+						<h2 id="on-the-wire">On the wire</h2>
+						<div className="wire-groups">
+							{profile.linkGroups.map((group) => (
+								<section className="wire-group" key={group.title}>
+									<h3>{group.title}</h3>
+									<div className="wire-links">
+										{group.links.map((link) => (
+											<LinkCard
+												key={link.label}
+												href={link.href}
+												label={link.label}
+												relationship={"rel" in link ? link.rel : undefined}
+												variant="wire"
+											/>
+										))}
+									</div>
+								</section>
+							))}
+						</div>
+					</section>
+
+					<section className="toolbox-section" aria-labelledby="toolbox">
+						<h2 id="toolbox">Tools of the trade</h2>
+						<ul aria-label="Tools of the trade">
+							{profile.tools.map((tool) => (
+								<li key={tool}>{tool}</li>
+							))}
+						</ul>
+					</section>
+				</main>
 
 				<footer>
 					<div className="footer-identity">
@@ -192,6 +198,6 @@ export default function Home() {
 					</InternalLink>
 				</footer>
 			</div>
-		</main>
+		</div>
 	);
 }

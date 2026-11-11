@@ -168,15 +168,14 @@ test("persists the selected color theme", async ({ page }) => {
 	await page.reload();
 
 	await expect(page.locator("html")).not.toHaveClass(/dark/);
-	const themeToggle = page.getByRole("button", {
-		name: "Switch to dark theme",
-	});
-	await expect(themeToggle).toHaveAttribute("aria-pressed", "false");
-	await themeToggle.click();
+	const themeColor = page.locator('meta[name="theme-color"]');
+	await expect(themeColor).toHaveAttribute("content", "#e9edf2");
+	await page.getByRole("button", { name: "Switch to dark theme" }).click();
 	await expect(page.locator("html")).toHaveClass(/dark/);
 	await expect(
 		page.getByRole("button", { name: "Switch to light theme" }),
-	).toHaveAttribute("aria-pressed", "true");
+	).toBeVisible();
+	await expect(themeColor).toHaveAttribute("content", "#090a0c");
 	await expect
 		.poll(() => page.evaluate(() => localStorage.getItem("theme")))
 		.toBe("dark");
@@ -185,7 +184,16 @@ test("persists the selected color theme", async ({ page }) => {
 	await expect(page.locator("html")).toHaveClass(/dark/);
 	await expect(
 		page.getByRole("button", { name: "Switch to light theme" }),
-	).toHaveAttribute("aria-pressed", "true");
+	).toBeVisible();
+	await expect(themeColor).toHaveAttribute("content", "#090a0c");
+});
+
+test("applies the dark theme before the app scripts load", async ({ page }) => {
+	await page.route(/\/_next\/static\/.*\.js/, (route) => route.abort());
+	await page.emulateMedia({ colorScheme: "dark", reducedMotion: "reduce" });
+	await page.goto("/");
+
+	await expect(page.locator("html")).toHaveClass(/dark/);
 });
 
 test("has no detectable WCAG A or AA violations in either theme", async ({
@@ -199,7 +207,7 @@ test("has no detectable WCAG A or AA violations in either theme", async ({
 	await page.getByRole("button", { name: "Switch to dark theme" }).click();
 	await expect(
 		page.getByRole("button", { name: "Switch to light theme" }),
-	).toHaveAttribute("aria-pressed", "true");
+	).toBeVisible();
 	const darkResults = await new AxeBuilder({ page }).withTags(tags).analyze();
 	expect(darkResults.violations).toEqual([]);
 });
@@ -214,7 +222,7 @@ test("reflows at 320px", async ({ page }) => {
 	}));
 	expect(dimensions.body).toBeLessThanOrEqual(dimensions.viewport);
 
-	const footer = page.locator("footer");
+	const footer = page.getByRole("contentinfo");
 	await footer.scrollIntoViewIfNeeded();
 	await expect(footer).toBeInViewport();
 	await expect(
