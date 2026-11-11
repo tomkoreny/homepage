@@ -1,6 +1,8 @@
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
+import "./logo-lab.css";
 
 export const metadata: Metadata = {
 	title: "TK mark lab",
@@ -121,6 +123,9 @@ function SizeStrip({ paths }: { paths: readonly string[] }) {
 }
 
 export default function LogoLabPage() {
+	// Design scratchpad for the TK mark: served by `next dev`, a 404 in production.
+	if (process.env.NODE_ENV === "production") notFound();
+
 	return (
 		<main className="logo-lab-page">
 			<header>
