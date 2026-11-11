@@ -7,7 +7,8 @@ import { TkMark } from "./tk-mark";
 
 const { description } = profile;
 
-export const dynamic = "force-dynamic";
+// Prerendered. The daily refresh keeps the footer year right without a deploy.
+export const revalidate = 86400;
 
 export const metadata: Metadata = {
 	title: "Tom Korený — Software Developer & DevOps Engineer",

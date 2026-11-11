@@ -81,6 +81,9 @@ export function proxy(request: NextRequest) {
 	}
 
 	const response = NextResponse.next();
+	// "/" answers with HTML, text or JSON, and Next.js replaces Vary on the
+	// prerendered HTML. Keep shared caches from storing it for every client.
+	response.headers.set("Cache-Control", "private, max-age=0, must-revalidate");
 	response.headers.set("Vary", "Accept, User-Agent");
 	return response;
 }
