@@ -258,6 +258,11 @@ body {
   transform: rotate(1.5deg);
 }
 
+/* Blue on the dark sheet is about 2.7:1, too faint for the small line. */
+.dark .primary-git small {
+  color: var(--ink);
+}
+
 .primary-email {
   grid-column: 9 / span 4;
   margin-top: 0.6rem;
